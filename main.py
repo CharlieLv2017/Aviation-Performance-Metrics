@@ -8,10 +8,16 @@ import dataFetch as df
 
 app = Flask(__name__)
 
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = 'hello123'
+# app.config['MYSQL_DB'] = 'flightdata'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'hello123'
-app.config['MYSQL_DB'] = 'flightdata'
+#app.config['MYSQL_PASSWORD'] = 'hello123'
+app.config['MYSQL_PASSWORD'] = '123456'
+# app.config['MYSQL_DB'] = 'flightdata'
+app.config['MYSQL_DB'] = 'CS526'
 
 db=MySQL(app)
 
@@ -29,6 +35,12 @@ def index():
 #=======================================================
 
 #Airports
+#Airports
+
+@app.route('/APmap')
+def APmapPage():
+	return render_template('APmap.html')
+
 @app.route('/APcomp')
 def APcompPage():
 	return render_template('APcomp.html')
@@ -41,7 +53,8 @@ def APperfPage():
 def APusagePage():
 	return render_template('APusage.html')
 
-#hello test
+
+
 #Airlines
 @app.route('/ALcomp')
 def ALcompPage():
