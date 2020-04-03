@@ -1,0 +1,1130 @@
+Origin,Description,count(c.Description)
+JFK,Weather,5142
+LAX,Weather,3160
+OGG,Carrier,494
+DFW,Carrier,6664
+SFO,Weather,5776
+BOS,Weather,8354
+LAX,Carrier,5951
+DFW,Weather,15517
+LAS,Weather,2503
+MIA,Carrier,1292
+TPA,Carrier,1427
+PHL,Carrier,2195
+PHL,Weather,5236
+DCA,Weather,6799
+SJU,Weather,1103
+CLE,Carrier,908
+TUS,Carrier,278
+ORD,Weather,19903
+SAN,Weather,1537
+STL,Carrier,1260
+SFO,Carrier,3935
+BDL,Weather,1487
+MIA,Weather,3646
+LGA,Weather,10277
+BNA,Carrier,1165
+MFE,Weather,229
+DEN,Carrier,2755
+LGA,Carrier,4437
+DCA,Carrier,2924
+ORD,Carrier,4613
+STL,Weather,2283
+AUS,Carrier,1175
+ORD,National Air System,9449
+SJC,Weather,534
+PHX,Carrier,3314
+AUS,Weather,1650
+JFK,Carrier,1576
+IAH,Carrier,2046
+COS,Weather,455
+EWR,Weather,7479
+TUL,Carrier,267
+BWI,Weather,5895
+IND,Carrier,719
+OKC,Carrier,377
+PIT,Carrier,834
+LGA,National Air System,7336
+BOS,Carrier,2983
+BWI,Carrier,2313
+FLL,Weather,4173
+SEA,Weather,1603
+CLT,Carrier,3712
+CLT,Weather,8329
+EWR,Carrier,2242
+MSP,Carrier,1406
+DFW,National Air System,1892
+DTW,Weather,3883
+MCO,Weather,5914
+SDF,Weather,672
+MCO,Carrier,2482
+SLC,Carrier,663
+SAT,Weather,1113
+MSP,Weather,3804
+SAT,Carrier,725
+DSM,Carrier,227
+MSY,Weather,1790
+STT,Weather,256
+OMA,Carrier,376
+PHX,Weather,2673
+IAH,Weather,7323
+MKE,Carrier,604
+TUL,Weather,592
+DAY,Carrier,276
+BNA,Weather,2650
+OKC,Weather,840
+ICT,Weather,482
+LAS,Carrier,3582
+OMA,Weather,862
+PBI,Weather,1397
+RIC,Weather,941
+EGE,Carrier,48
+RDU,Weather,2429
+PHL,National Air System,1396
+ATL,Weather,8947
+MSY,Carrier,1111
+ABQ,Weather,630
+MEM,Weather,779
+MEM,Carrier,391
+RDU,Carrier,1108
+FLL,Carrier,1549
+BDL,Carrier,452
+EGE,Weather,224
+SNA,Weather,857
+TUS,Weather,460
+RNO,Weather,456
+MSY,National Air System,282
+CMH,Carrier,753
+IND,Weather,1246
+CMH,Weather,1265
+SJU,Carrier,463
+ANC,Carrier,278
+PSP,Carrier,166
+ANC,Weather,380
+BET,Weather,82
+WRG,Weather,24
+JNU,Weather,141
+YAK,Weather,39
+PDX,Carrier,914
+SJC,Carrier,2231
+SEA,Carrier,1627
+KTN,Weather,61
+FAI,Carrier,99
+ADQ,Weather,106
+KTN,Carrier,86
+OME,Weather,110
+SCC,Weather,64
+BLI,Weather,25
+LGB,Weather,94
+OME,Carrier,28
+OTZ,Carrier,24
+LIH,Carrier,256
+JNU,Carrier,104
+RSW,Weather,1307
+CHS,Weather,1377
+BET,Carrier,32
+WRG,Carrier,32
+PSG,Carrier,33
+TPA,Weather,2685
+IAD,Weather,1694
+SLC,Weather,1263
+MCO,National Air System,701
+DEN,Weather,9536
+HPN,National Air System,197
+HPN,Weather,812
+FLL,National Air System,632
+SYR,Weather,566
+ROC,Weather,603
+BOS,National Air System,2467
+EWR,National Air System,7610
+PWM,Weather,517
+SAV,National Air System,362
+SAV,Weather,677
+PWM,Carrier,209
+BTV,Weather,380
+HOU,Weather,3369
+ROC,Carrier,265
+TPA,National Air System,337
+SRQ,Weather,154
+SWF,Weather,64
+BUR,Weather,563
+SMF,Carrier,1188
+LGB,Carrier,279
+DCA,National Air System,2856
+BDL,National Air System,236
+HPN,Carrier,248
+PVD,Weather,1044
+JAX,Carrier,437
+JAX,Weather,1137
+PBI,Carrier,457
+SWF,Carrier,58
+JFK,National Air System,3973
+PSE,Weather,40
+BUF,National Air System,774
+BUF,Weather,1171
+BQN,Weather,87
+SAV,Carrier,257
+CHS,Carrier,373
+PBI,National Air System,247
+SRQ,National Air System,44
+PDX,Weather,827
+IAD,Carrier,1146
+IAD,National Air System,672
+PVD,National Air System,363
+RSW,Carrier,554
+PIT,Weather,1288
+SJU,Security,7
+BWI,National Air System,1607
+BUF,Carrier,398
+ORH,Weather,82
+ORH,Carrier,53
+ORH,National Air System,12
+DTW,National Air System,996
+SAN,Carrier,2504
+ONT,Weather,514
+LIT,Carrier,187
+HOU,Carrier,2414
+RDU,National Air System,992
+MCI,Weather,1879
+ICT,Carrier,173
+MDW,Weather,7421
+PNS,Weather,412
+ECP,Weather,190
+VPS,Weather,269
+ATL,Carrier,4640
+SMF,Weather,740
+OAK,Weather,513
+PVD,Carrier,390
+ONT,Carrier,499
+LAX,National Air System,1850
+PHX,National Air System,427
+RIC,Carrier,463
+DAL,National Air System,384
+SFO,National Air System,4299
+LAS,National Air System,764
+DAL,Carrier,2465
+LBB,Weather,413
+OAK,Carrier,2685
+DAL,Weather,2944
+AMA,Carrier,144
+MAF,Weather,514
+MDW,Carrier,2119
+MAF,Carrier,233
+CLE,Weather,1575
+MCI,Carrier,1048
+MKE,Weather,1366
+BUR,Carrier,1764
+PNS,Carrier,165
+GEG,Weather,172
+BHM,Carrier,401
+MDW,National Air System,505
+ELP,Carrier,299
+LIT,Weather,439
+DTW,Carrier,1792
+GRR,Weather,755
+GSP,Weather,421
+SNA,Carrier,854
+CAK,Weather,300
+SAN,National Air System,950
+OAK,National Air System,174
+SYR,Carrier,250
+SNA,National Air System,298
+SMF,National Air System,158
+PDX,National Air System,180
+ELP,Weather,376
+HRL,Weather,182
+DAY,Weather,554
+AMA,Weather,301
+HRL,Carrier,73
+ISP,Weather,458
+ALB,Weather,576
+ORF,Carrier,493
+SDF,Carrier,336
+MHT,Weather,553
+CRP,Weather,319
+MKE,National Air System,513
+SLC,National Air System,153
+STL,National Air System,794
+BNA,National Air System,810
+GRB,Weather,354
+MYR,Weather,679
+MYR,National Air System,136
+ACY,Weather,170
+PBG,Weather,32
+IAG,Weather,57
+SBA,Weather,395
+BOI,Weather,305
+CVG,Carrier,630
+SAF,National Air System,5
+SAF,Weather,86
+FAT,Carrier,121
+GCC,National Air System,9
+PAH,National Air System,25
+SBA,Carrier,122
+DEN,National Air System,959
+MAF,National Air System,109
+CLD,Carrier,5
+RDM,Carrier,18
+RDM,Weather,235
+MKG,Weather,154
+BFL,Weather,92
+ASE,Weather,1539
+BIL,Carrier,32
+ACV,Weather,271
+YUM,National Air System,2
+DVL,Weather,103
+JMS,National Air System,52
+JMS,Carrier,15
+JMS,Weather,205
+SBN,Weather,284
+LNK,Carrier,20
+MMH,Carrier,7
+MCI,National Air System,425
+SUN,Weather,475
+DSM,Weather,485
+ORF,Weather,995
+FSD,Carrier,120
+ONT,National Air System,135
+MFR,Weather,206
+EUG,Weather,169
+SPI,Carrier,48
+MRY,Weather,278
+MRY,Carrier,84
+JAC,National Air System,41
+PSP,National Air System,82
+FLG,National Air System,15
+GCC,Weather,59
+LAN,Weather,157
+LAN,Carrier,30
+BIL,National Air System,11
+IAH,National Air System,2421
+ICT,National Air System,153
+BZN,Carrier,43
+FAT,Weather,248
+COS,Carrier,152
+SBP,Carrier,49
+DLH,Weather,342
+CMX,Weather,205
+CEC,Weather,14
+CID,Carrier,114
+CID,Weather,473
+JAC,Weather,148
+ACV,Carrier,14
+HIB,Carrier,12
+VEL,Weather,47
+ESC,National Air System,7
+GTF,Weather,37
+HIB,Weather,52
+IMT,Weather,61
+RHI,Carrier,7
+RHI,Weather,83
+FWA,Weather,320
+DRO,Carrier,75
+DRO,Weather,160
+TUS,National Air System,79
+STC,Weather,11
+STC,Carrier,1
+MBS,Carrier,25
+MBS,Weather,228
+MBS,National Air System,33
+SBP,National Air System,68
+LNK,Weather,116
+PSP,Weather,382
+FCA,National Air System,6
+BRD,Carrier,4
+BRD,Weather,38
+PIH,Weather,13
+TWF,Weather,26
+GRR,Carrier,243
+MLI,Carrier,72
+MOT,Carrier,19
+CHO,Carrier,110
+CHO,Weather,336
+RAP,Weather,242
+DLH,National Air System,37
+PUB,Weather,44
+FWA,Carrier,80
+FWA,National Air System,104
+IDA,Weather,69
+AZO,Weather,213
+CVG,Weather,1096
+ASE,Carrier,102
+GRB,Carrier,48
+SEA,National Air System,394
+IDA,Carrier,9
+CLE,National Air System,1359
+RST,Weather,255
+SBN,Carrier,68
+DIK,Carrier,4
+FAR,Carrier,53
+EVV,Weather,168
+JAC,Carrier,54
+GEG,Carrier,140
+PLN,Weather,158
+PLN,Carrier,19
+AMA,National Air System,72
+MLI,Weather,243
+DIK,Weather,8
+FCA,Weather,48
+GJT,National Air System,23
+DSM,National Air System,267
+GTF,Carrier,5
+MTJ,National Air System,17
+HLN,Weather,22
+ABQ,Carrier,354
+MTJ,Carrier,44
+CHS,National Air System,474
+RAP,Carrier,47
+EUG,Carrier,53
+MSN,National Air System,388
+HDN,Carrier,14
+COS,National Air System,65
+RDD,Carrier,13
+RDD,Weather,151
+CLD,Weather,7
+AVL,Carrier,121
+RKS,National Air System,12
+RKS,Carrier,8
+SPI,Weather,161
+COD,Weather,48
+COD,Carrier,3
+COD,National Air System,1
+RAP,National Air System,31
+FSD,Weather,435
+FSD,National Air System,114
+BOI,Carrier,152
+BOI,National Air System,50
+ATL,National Air System,1605
+MOT,Weather,110
+FAR,National Air System,110
+MSP,National Air System,579
+LRD,Weather,119
+LRD,National Air System,70
+PSC,Carrier,43
+MLI,National Air System,138
+XNA,Weather,484
+MSO,National Air System,9
+MSO,Weather,54
+MFR,Carrier,25
+BUR,National Air System,389
+SAT,National Air System,84
+LEX,Weather,350
+ASE,National Air System,171
+BFL,Carrier,41
+PIA,National Air System,139
+SGF,Weather,365
+HLN,National Air System,3
+HLN,Carrier,7
+GTF,National Air System,4
+HYS,Weather,116
+PAH,Carrier,12
+PAH,Weather,155
+PUB,Carrier,7
+PUB,National Air System,8
+SBP,Weather,271
+CPR,National Air System,8
+CPR,Weather,39
+RDM,National Air System,62
+FCA,Carrier,14
+OKC,National Air System,177
+PSC,National Air System,24
+EUG,National Air System,40
+SJC,National Air System,142
+LIT,National Air System,210
+PIA,Weather,281
+SMX,Carrier,3
+OMA,National Air System,332
+PIA,Carrier,78
+ELP,National Air System,77
+BHM,National Air System,253
+EAU,National Air System,19
+HYS,National Air System,16
+BIS,Weather,184
+FLG,Weather,152
+ABR,Weather,42
+ABR,Carrier,8
+APN,Carrier,12
+APN,Weather,74
+BJI,Carrier,1
+BTM,Weather,37
+RKS,Weather,64
+HNL,Weather,51
+HNL,Carrier,638
+DAY,National Air System,410
+OTH,Weather,60
+MSN,Carrier,188
+MDT,Weather,263
+KOA,Carrier,230
+BQN,Carrier,59
+CLT,National Air System,1253
+MIA,National Air System,292
+RIC,National Air System,745
+RNO,Carrier,356
+RSW,National Air System,169
+ABE,Weather,166
+LAW,Carrier,99
+BTR,Carrier,301
+LFT,Carrier,116
+CRP,Carrier,210
+SJT,Carrier,62
+TYR,Carrier,68
+BPT,Carrier,65
+CLL,Carrier,48
+BRO,Carrier,121
+SPS,Carrier,72
+GSP,National Air System,326
+MEM,National Air System,458
+CVG,National Air System,899
+MLU,Carrier,99
+IND,National Air System,778
+BTV,National Air System,458
+MEI,Carrier,40
+TVC,Weather,245
+MSN,Weather,543
+SDF,National Air System,399
+PIT,National Air System,751
+SBN,National Air System,110
+SYR,National Air System,447
+SGF,National Air System,168
+BRO,Weather,145
+GUC,Weather,32
+TYS,National Air System,262
+GSO,National Air System,551
+DIK,National Air System,5
+ROA,Weather,130
+MHT,National Air System,204
+ORF,National Air System,726
+GSO,Weather,462
+JAX,National Air System,411
+HOB,National Air System,26
+HOB,Weather,51
+MOB,Weather,316
+ROC,National Air System,581
+GRR,National Air System,428
+CAE,National Air System,98
+SAF,Carrier,102
+LBB,National Air System,92
+XNA,National Air System,324
+CMH,National Air System,934
+ATW,Weather,193
+ATW,National Air System,131
+RST,Carrier,39
+AZO,Carrier,36
+ERI,Weather,71
+LFT,National Air System,111
+ERI,National Air System,41
+ERI,Carrier,3
+PHF,Carrier,70
+ELM,Carrier,15
+ELM,Weather,36
+MHT,Carrier,168
+BHM,Weather,624
+ABE,Carrier,63
+BTR,Weather,313
+TLH,Weather,187
+GNV,National Air System,29
+CAE,Carrier,185
+BTV,Carrier,149
+TRI,Carrier,49
+GNV,Weather,99
+TVC,Carrier,47
+AVP,Weather,142
+EWN,Weather,129
+EWN,Carrier,33
+ABY,Weather,19
+VLD,Weather,26
+SHV,Weather,284
+GSO,Carrier,321
+TRI,National Air System,11
+BMI,Carrier,54
+BMI,Weather,195
+CRW,Weather,234
+OAJ,Weather,157
+LEX,Carrier,159
+SHV,Carrier,237
+GRK,Weather,209
+GRK,Carrier,103
+FAY,Carrier,69
+CAE,Weather,216
+BQK,Carrier,11
+OAJ,Carrier,44
+MGM,Weather,131
+FAR,Weather,362
+XNA,Carrier,201
+SCE,National Air System,36
+AVP,National Air System,86
+SCE,Weather,79
+HSV,National Air System,111
+JAN,Weather,346
+CAK,National Air System,249
+ISN,National Air System,11
+ABE,National Air System,49
+LNK,National Air System,71
+ELM,National Air System,18
+CID,National Air System,232
+TTN,Carrier,140
+CWA,Weather,165
+MSO,Carrier,24
+TTN,Weather,146
+TUL,National Air System,195
+ITO,Carrier,61
+TOL,Carrier,44
+HSV,Weather,278
+ABI,Weather,143
+LSE,National Air System,64
+DBQ,Weather,89
+FSM,Weather,72
+FSM,Carrier,64
+LFT,Weather,267
+ROW,Weather,88
+DBQ,Carrier,16
+AEX,Weather,167
+SGF,Carrier,86
+EVV,Carrier,82
+LCH,Weather,129
+JAN,National Air System,153
+GPT,Weather,205
+MHK,National Air System,63
+RST,National Air System,103
+ALO,National Air System,35
+ALO,Carrier,14
+ALO,Weather,46
+BMI,National Air System,78
+MQT,Carrier,3
+ABI,Carrier,20
+GJT,Weather,76
+GJT,Carrier,40
+GCK,Weather,67
+GCK,Carrier,22
+FNT,Carrier,61
+FNT,National Air System,122
+GRB,National Air System,179
+CLL,Weather,174
+DBQ,National Air System,70
+EVV,National Air System,143
+TYS,Weather,409
+CMI,Carrier,30
+CMI,Weather,169
+CMI,National Air System,112
+FNT,Weather,254
+GGG,Weather,52
+GGG,Carrier,33
+TYS,Carrier,310
+LSE,Weather,136
+AZO,National Air System,129
+JLN,Weather,72
+JLN,Carrier,33
+COU,Carrier,51
+LEX,National Air System,242
+TVC,National Air System,149
+ACT,Carrier,111
+ACT,National Air System,39
+MGM,Carrier,66
+CWA,Carrier,17
+CWA,National Air System,100
+GRI,National Air System,8
+GRI,Weather,53
+LBB,Carrier,148
+HSV,Carrier,189
+CRP,National Air System,104
+MDT,National Air System,83
+MDT,Carrier,94
+BIS,National Air System,20
+GRK,National Air System,70
+ACT,Weather,105
+SPS,Weather,107
+SUX,Carrier,14
+SUX,National Air System,51
+TOL,Weather,105
+TOL,National Air System,62
+CHA,Weather,236
+CHA,Carrier,130
+CHO,National Air System,144
+GSP,Carrier,230
+MOB,National Air System,107
+MHK,Weather,113
+MHK,Carrier,32
+BPT,Weather,70
+LAW,Weather,114
+TXK,Weather,94
+TXK,Carrier,61
+EYW,Weather,135
+TYR,Weather,124
+SJT,Weather,98
+TLH,Carrier,120
+CHA,National Air System,114
+GPT,Carrier,97
+GPT,National Air System,56
+COU,Weather,189
+JAN,Carrier,229
+GNV,Carrier,80
+ROW,Carrier,27
+EYW,Carrier,34
+LSE,Carrier,22
+COU,National Air System,69
+VPS,National Air System,55
+MLU,Weather,111
+SRQ,Carrier,105
+PHF,Weather,123
+TRI,Weather,67
+FAY,Weather,177
+ILM,Weather,314
+DAB,Weather,110
+MOB,Carrier,136
+TYR,National Air System,39
+ISN,Weather,57
+CRW,Carrier,101
+LCH,Carrier,29
+PIB,Carrier,35
+ALB,National Air System,142
+LAN,National Air System,99
+ROA,National Air System,66
+SHV,National Air System,101
+PWM,National Air System,601
+BRO,National Air System,59
+MLB,Weather,70
+AVL,Weather,361
+BTR,National Air System,113
+CRW,National Air System,75
+DHN,National Air System,11
+DHN,Carrier,12
+ALB,Carrier,180
+GTR,Weather,33
+GTR,Carrier,8
+ITH,Carrier,5
+ROA,Carrier,41
+AEX,Carrier,48
+BGR,Carrier,47
+MYR,Carrier,240
+BIS,Carrier,51
+ABY,Carrier,6
+SCE,Carrier,9
+DHN,Weather,35
+VLD,Carrier,2
+BGM,Weather,51
+BGM,Carrier,4
+CSG,Carrier,10
+AGS,Carrier,80
+ILM,Carrier,118
+MGM,National Air System,22
+AVP,Carrier,44
+PHF,National Air System,9
+GUC,National Air System,3
+MOT,National Air System,11
+ILG,Carrier,5
+UST,Carrier,8
+MQT,National Air System,12
+GCK,National Air System,6
+VPS,Carrier,184
+TXK,National Air System,25
+SUX,Weather,58
+LBE,Weather,98
+LGA,Security,10
+STT,Carrier,77
+ISP,Carrier,125
+HOU,National Air System,219
+CAK,Carrier,127
+AGS,Weather,110
+ACY,Carrier,123
+LBE,Carrier,40
+YUM,Weather,11
+MTJ,Weather,83
+DLH,Carrier,20
+HDN,Weather,88
+MRY,National Air System,71
+ESC,Weather,73
+DVL,National Air System,39
+CEC,Carrier,2
+CIU,Weather,55
+CIU,Carrier,13
+CMX,Carrier,11
+MFE,Carrier,155
+LAR,Weather,88
+LAR,National Air System,6
+OTH,Carrier,5
+EAU,Weather,97
+MMH,Weather,185
+CPR,Carrier,10
+SMX,Weather,23
+BZN,Weather,136
+MKG,Carrier,12
+MKG,National Air System,26
+PSC,Weather,148
+GCC,Carrier,8
+CNY,Weather,28
+ESC,Carrier,4
+APN,National Air System,11
+CDC,Weather,4
+AUS,National Air System,273
+ISN,Carrier,5
+OGG,Weather,45
+KOA,Weather,8
+SIT,National Air System,1
+SCC,Carrier,24
+PSG,Weather,28
+FAI,Weather,17
+CDV,Weather,21
+BRW,Weather,75
+CDV,Carrier,23
+YAK,Carrier,31
+OTZ,Weather,104
+ADQ,Carrier,11
+LGB,National Air System,117
+MCO,Security,25
+MSY,Security,6
+HOU,Security,1
+ADK,Weather,22
+SIT,Carrier,40
+PSE,Carrier,37
+SJU,National Air System,344
+CLL,National Air System,57
+MFE,National Air System,79
+ABQ,National Air System,81
+AEX,National Air System,74
+GUC,Carrier,6
+MLU,National Air System,49
+BIL,Weather,71
+ATW,Carrier,33
+UST,Weather,8
+FSM,National Air System,28
+LRD,Carrier,68
+FLG,Carrier,24
+IAG,Carrier,27
+YUM,Carrier,21
+CLD,National Air System,1
+SBA,National Air System,141
+EAU,Carrier,13
+LAR,Carrier,13
+RDD,National Air System,35
+BJI,Weather,18
+GUM,Carrier,7
+HNL,National Air System,11
+LIH,National Air System,2
+STX,National Air System,14
+DVL,Carrier,13
+SGU,Carrier,11
+BTM,National Air System,3
+EKO,Weather,26
+INL,Weather,33
+DAB,Carrier,47
+HRL,National Air System,43
+CSG,Weather,31
+ABY,National Air System,9
+GRI,Carrier,27
+BQN,National Air System,72
+IAG,National Air System,3
+INL,Carrier,10
+IMT,Carrier,2
+FAT,National Air System,38
+SUN,National Air System,6
+SUN,Carrier,228
+AVL,National Air System,77
+BFL,National Air System,19
+MFR,National Air System,87
+RNO,National Air System,85
+GUM,Weather,11
+LCH,National Air System,57
+PNS,National Air System,115
+ECP,National Air System,41
+MKE,Security,2
+ACY,National Air System,26
+EKO,National Air System,9
+SPI,National Air System,40
+CMX,National Air System,12
+SGU,Weather,29
+GFK,Carrier,4
+BPT,National Air System,18
+BZN,National Air System,9
+ECP,Carrier,135
+ACK,Weather,57
+MLB,Carrier,35
+BQK,Weather,41
+MQT,Weather,126
+LAW,National Air System,13
+LBE,National Air System,10
+HYA,Carrier,1
+GST,Weather,8
+BRW,Carrier,32
+ACK,Carrier,14
+CHO,Security,1
+PBG,Carrier,16
+EKO,Carrier,3
+PIH,Carrier,1
+HYS,Carrier,6
+OAJ,National Air System,27
+TWF,Carrier,5
+SIT,Weather,21
+SMX,National Air System,4
+ISP,National Air System,33
+SFO,Security,8
+SNA,Security,1
+STX,Weather,42
+BLI,Carrier,23
+OTZ,National Air System,2
+ACK,National Air System,33
+CSG,National Air System,9
+PSE,National Air System,37
+BTM,Carrier,2
+OTH,National Air System,12
+GUM,National Air System,2
+MIA,Security,4
+TPA,Security,4
+SAN,Security,10
+BGR,Weather,130
+LAS,Security,3
+ITH,Weather,31
+GFK,Weather,94
+ACV,National Air System,42
+LIH,Weather,10
+MMH,National Air System,11
+STT,National Air System,41
+GEG,National Air System,23
+EGE,National Air System,7
+FAY,National Air System,18
+DAB,National Air System,11
+BJI,National Air System,1
+GFK,National Air System,3
+ABR,National Air System,2
+HIB,National Air System,8
+INL,National Air System,2
+IMT,National Air System,2
+RHI,National Air System,8
+BRD,National Air System,2
+STX,Carrier,10
+SGU,National Air System,3
+DLG,Carrier,1
+ACY,Security,5
+BGR,National Air System,169
+EWN,National Air System,12
+OGG,National Air System,11
+HYA,National Air System,2
+ITO,Weather,7
+KTN,National Air System,1
+HDN,National Air System,9
+ILM,National Air System,94
+VLD,National Air System,5
+GTR,National Air System,3
+JFK,Security,19
+ORD,Security,9
+LAX,Security,14
+ITH,National Air System,3
+PHX,Security,18
+PDX,Security,1
+DCA,Security,11
+SEA,Security,1
+OKC,Security,2
+SLC,Security,1
+LWS,Weather,5
+CIU,National Air System,4
+IDA,National Air System,2
+PGD,Carrier,16
+PGD,Weather,41
+FLL,Security,128
+DFW,Security,11
+PHL,Security,7
+BOS,Security,8
+EWR,Security,13
+RSW,Security,1
+BUF,Security,1
+SWF,Security,1
+CLE,Security,2
+IAG,Security,2
+STT,Security,1
+ATL,Security,11
+BWI,Security,5
+BQN,Security,2
+DTW,Security,6
+PBG,Security,1
+OAK,Security,2
+CAK,Security,1
+PLN,National Air System,14
+DAL,Security,1
+CLT,Security,7
+PVD,Security,2
+RIC,Security,1
+JAX,Security,4
+BDL,Security,2
+SYR,Security,1
+HPN,Security,3
+TLH,National Air System,46
+ALB,Security,1
+BNA,Security,1
+RDU,Security,1
+AUS,Security,2
+CHS,Security,1
+MSP,Security,2
+PIT,Security,1
+ORH,Security,1
+MYR,Security,2
+IAH,Security,4
+LBE,Security,2
+DEN,Security,2
+DRO,National Air System,29
+IAD,Security,1
+BLI,National Air System,2
+LWS,Carrier,1
+EYW,National Air System,24
+MLB,National Air System,5
+ADK,Carrier,3
+MVY,Weather,11
+PBG,National Air System,3
+FNT,Security,1
+MDW,Security,1
+BGM,National Air System,7
+SAT,Security,1
+MVY,National Air System,11
+MEI,Weather,47
+STS,Weather,148
+PIB,Weather,29
+STS,Carrier,15
+AGS,National Air System,13
+ANC,National Air System,3
+SWF,National Air System,4
+STS,National Air System,40
+HYA,Weather,1
+YAK,National Air System,2
+WYS,Weather,2
+WYS,National Air System,1
+PPG,Carrier,1
+CGI,Weather,43
+CKB,Weather,35
+UIN,Weather,81
+UIN,National Air System,33
+BQK,National Air System,5
+PIE,Weather,52
+SFB,Weather,109
+PSM,Weather,5
+SFB,National Air System,5
+AZA,Weather,44
+OGD,Weather,2
+OWB,Weather,3
+OGS,National Air System,5
+OWB,National Air System,1
+CKB,National Air System,8
+OGS,Weather,20
+HVN,Weather,105
+HVN,Carrier,37
+LYH,Weather,30
+LYH,Carrier,35
+PIB,National Air System,7
+MEI,National Air System,6
+PSM,Carrier,4
+USA,Weather,22
+PVU,Weather,7
+SWO,Weather,33
+ABI,National Air System,24
+SPS,National Air System,17
+GGG,National Air System,17
+PIA,Security,2
+BFF,Weather,28
+LBF,Weather,29
+LBF,National Air System,3
+USA,Carrier,10
+LCK,Carrier,6
+PIE,Carrier,25
+SJT,National Air System,28
+ROW,National Air System,3
+SWO,National Air System,16
+FLO,Carrier,2
+BLV,Security,3
+VPS,Security,1
+RFD,Weather,7
+SWO,Carrier,6
+HTS,National Air System,7
+PGV,Carrier,25
+FLO,Weather,1
+PGV,Weather,45
+LBL,Weather,21
+LWB,National Air System,11
+SHD,Weather,22
+PGD,National Air System,2
+LCK,Weather,10
+PVU,Carrier,5
+HTS,Carrier,20
+JLN,National Air System,14
+HVN,National Air System,22
+LWB,Carrier,7
+SHD,National Air System,10
+CGI,National Air System,11
+LWB,Weather,29
+OGS,Carrier,12
+BLV,Carrier,5
+SFB,Carrier,13
+RFD,Carrier,3
+AZA,Carrier,25
+BLV,Weather,8
+SCK,Carrier,5
+USA,National Air System,3
+PIE,National Air System,1
+HTS,Weather,20
+SLN,Weather,35
+SHD,Carrier,6
+BKG,Carrier,4
+SPN,Carrier,2
+HHH,Weather,68
+FAI,National Air System,1
+CGI,Carrier,3
+HHH,Carrier,6
+DLG,Weather,3
+SBA,Security,1
+TUS,Security,1
+SBP,Security,1
+IND,Security,1
+SJC,Security,1
+SMF,Security,1
+SPN,Weather,6
+OWB,Carrier,1
+PGV,National Air System,2
+SPN,National Air System,1
+CYS,National Air System,2
+LBL,National Air System,2
+EAR,Weather,26
+SCK,Weather,3
+DRT,National Air System,2
+ART,Weather,33
+PRC,Weather,12
+EAR,National Air System,6
+SLN,National Air System,4
+BFF,Carrier,2
+LBF,Carrier,2
+MLU,Security,1
+BRW,National Air System,2
+ART,Carrier,4
+SCK,National Air System,1
+HHH,National Air System,4
+HOB,Carrier,2
+CNY,National Air System,8
+CNY,Carrier,1
+LBL,Carrier,1
+CKB,Carrier,2
+VEL,Carrier,1
+BFF,National Air System,2
+UIN,Carrier,5
+CYS,Weather,29
+DRT,Weather,8
+COU,Security,1
+PIR,Weather,21
+ATY,Weather,22
+ATY,National Air System,3
+PIR,Carrier,3
+PAE,Weather,18
+PAE,National Air System,13
+ATY,Carrier,1
+BKG,Weather,8
+BFM,Weather,4
+BFM,Carrier,3
+VEL,National Air System,3
+PIR,National Air System,4
+EAR,Carrier,2
+BUR,Security,1
+MVY,Carrier,2
+AKN,Carrier,1
+FSM,Security,1
+CYS,Carrier,3
+STS,Security,1
+ANC,Security,1
+BHM,Security,1
+HGR,Weather,1
+XWA,Weather,3
+KOA,National Air System,1
+PRC,National Air System,1

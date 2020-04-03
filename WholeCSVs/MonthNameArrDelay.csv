@@ -1,0 +1,13 @@
+MONTHNAME(FlightDate),avg(ArrDelay)
+January,4.1076
+February,4.4583
+March,3.3922
+April,3.8945
+May,5.1915
+June,9.1408
+July,8.4394
+August,7.2803
+September,0.5243
+October,1.2301
+November,0.4859
+December,5.3992

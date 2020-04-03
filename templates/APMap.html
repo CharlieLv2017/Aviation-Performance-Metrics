@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>APM</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css"/>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
+    <script src="js/geopoint.js"></script>
+    <script src="js/hierarchy.js"></script>
+    <script src="js/force.js"></script>
+    <script src="js/stats.js"></script>
+    <script src="js/usmap.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/tip.js"></script>
+	<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  //background-image: url('bg1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+</head>
+
+<body style="background-color:#ccffff;">
+<div class="navbar">
+  <a href="/">Home</a>
+  <div class="dropdown">
+    <button class="dropbtn">Airports 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="/APmap">Map</a>
+      <a href="/APcomp">Comparision</a>
+      <a href="/APperf">Performance</a>
+      <a href="/APusage">Usage</a>
+      
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Airlines
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="/ALcomp">Comparision</a>
+      <a href="/ALperf">Performance</a>
+      <a href="/ALusage">Usage</a>
+      
+    </div>
+  </div>
+  <a href="/pred">Prediction</a>
+  <a href="/admin">Admin</a>
+</div>
+<div class="div-container">
+    <hr>
+	<div class="row">
+        <div id="mapdiv" class="col-xl-9">
+            <div class="row minuspadding">
+                <div class="col-lg-6">
+                    
+                    <button id="clearmap" type="button" class="btn btn-light btn-sm" onclick="clearMap()">
+                        Clear Map
+                    </button>
+                    <label class="form-check-label incresepaddingleft">
+                        <input id="checkbox" class="form-check-input" type="checkbox" checked
+                               onchange="checkbox()">
+                        Show all airports
+                    </label>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">Search</span>
+                        <input id="keyword" type="text" class="form-control" placeholder="IATA, ICAO or City Name"
+                               onkeyup="enterHit(event)">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button" onclick="searchAirport()">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div id="force" style="visibility: hidden; height: 0"></div>
+            <div id="nonforce">
+                <svg id="usmap"></svg>
+            </div>
+        </div>
+        <div id="paneldiv" class="col-xl-3 card panel panelbefore">
+            <div id="carddiv">
+                <div class="card-body reducedpadding">
+                    <h4 id="card_title" class="card-title"></h4>
+                    <h6 id="card_code" class="card-title"></h6>
+                </div>
+                <ul id="cardlist" class="list-group list-group-flush reducefontsize">
+                    
+                </ul>
+            </div>
+            <div id="piediv" class="pie">
+                <svg id="piechart"></svg>
+            </div>
+        </div>
+    </div>
+    <div id="hrdiv"></div>
+    
+    <hr>
+   
+    <div id="source" class="row">
+        
+    </div>
+</div>
+</body>
+</html>

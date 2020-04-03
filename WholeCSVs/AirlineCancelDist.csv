@@ -1,0 +1,72 @@
+IATA_Airline,Description,count(c.Description)
+AA,Weather,43107
+AA,Carrier,20626
+AA,National Air System,5211
+AS,Carrier,4162
+AS,Weather,2794
+B6,Weather,14512
+B6,Carrier,5590
+B6,National Air System,6301
+B6,Security,141
+DL,Weather,13508
+DL,Carrier,6896
+DL,National Air System,1830
+US,Carrier,1007
+US,Weather,2490
+US,National Air System,570
+VX,National Air System,1541
+VX,Carrier,903
+WN,Carrier,39299
+WN,Weather,52400
+UA,Weather,19076
+UA,Carrier,7075
+WN,National Air System,10128
+NK,Weather,8635
+NK,Carrier,4938
+MQ,National Air System,14807
+MQ,Weather,17626
+MQ,Carrier,4676
+NK,National Air System,1442
+OO,Weather,42853
+OO,National Air System,7565
+OO,Carrier,6504
+EV,Weather,15433
+EV,National Air System,23264
+HA,Carrier,866
+UA,National Air System,2124
+EV,Carrier,10144
+F9,Carrier,3541
+F9,Weather,3789
+AS,National Air System,1318
+NK,Security,86
+VX,Weather,219
+WN,Security,25
+EV,Security,1
+MQ,Security,1
+HA,Weather,40
+AA,Security,76
+UA,Security,14
+DL,Security,36
+OO,Security,5
+AS,Security,2
+VX,Security,6
+F9,Security,12
+9E,Weather,3712
+9E,National Air System,6208
+9E,Carrier,692
+G4,Carrier,447
+G4,Weather,894
+G4,National Air System,47
+OH,Weather,10481
+OH,Carrier,6591
+OH,National Air System,1622
+YV,Weather,5778
+YV,Carrier,4808
+YV,National Air System,1637
+YX,Weather,8689
+YX,Carrier,2716
+YX,National Air System,6385
+OH,Security,2
+YX,Security,2
+G4,Security,5
+YV,Security,16
