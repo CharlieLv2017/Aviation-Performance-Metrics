@@ -1,0 +1,5 @@
+Time,Cancelled,CarrierDelay,DepDelay,Diverted,Count,LateAircraftDelay,NASDelay,SecurityDelay,WeatherDelay,ArrDelay,Count2,15minDepDelay,15minArrDelay,Type
+2018,0,0,63,0,2,52,18.5,0,0,59.5,2,1.0,1.0,y
+1,0,0,63,0,2,52,18.5,0,0,59.5,2,1.0,1.0,m
+Mon,0,0,15,0,1,0,0.0,0,0,15.0,1,1.0,1.0,d
+Thu,0,0,111,0,1,104,37.0,0,0,104.0,1,1.0,1.0,d
