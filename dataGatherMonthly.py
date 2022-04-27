@@ -5,10 +5,15 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = 'hello123'
+# app.config['MYSQL_DB'] = 'flightdata'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'hello123'
-app.config['MYSQL_DB'] = 'flightdata'
+app.config['MYSQL_PASSWORD'] = '123456'
+app.config['MYSQL_DB'] = 'CS526'
+
 db=MySQL(app)
 
 
@@ -19,7 +24,7 @@ def AirLineArrDel(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -37,7 +42,7 @@ def AirLineDepDel(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -56,7 +61,7 @@ def AirPortDepDelay(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -73,7 +78,7 @@ def AirPortArrDelay(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -95,7 +100,7 @@ def StateDepOrigin(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -113,7 +118,7 @@ def StateArrDest(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -131,7 +136,7 @@ def CityDepOrigin(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -149,7 +154,7 @@ def CityArrDest(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -170,7 +175,7 @@ def AirlineCancellations(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -188,7 +193,7 @@ def AirportCancellations(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -208,7 +213,7 @@ def RouteDelay(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -228,7 +233,7 @@ def TailNumberTaxiOut(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
@@ -241,10 +246,142 @@ def TailNumberTaxiIn(startDate, endDate):
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
-	num_fields = len(cur.description)
+	# num_fields = len(cur.description)
 	header = [i[0] for i in cur.description]
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
 	np.savetxt("./MonthlyCSVs/TailNumberTaxiIn.csv", df, fmt='%s', delimiter=",")
+	cur.close()
+
+
+#09 MonthlyDelayTypeAirline
+def MonthlyDelayTypeAirline(startDate, endDate):
+	query = "SELECT DATE_FORMAT(FlightDate,'%%Y-%%m') as yearWithMon, IATA_Airline, AVG(CarrierDelay) AS CarrierDelay, AVG(WeatherDelay) AS WeatherDelay, AVG(NASDelay) AS NASDelay, AVG(SecurityDelay) AS SecurityDelay, AVG(LateAircraftDelay) AS LateAircraftDelay FROM AllFlights_innodb WHERE Cancelled=0 and Diverted=0 AND `FlightDate` BETWEEN ('%s') AND ('%s') GROUP BY yearWithMon, IATA_Airline" % (startDate, endDate)
+	cur=db.connection.cursor()
+	cur.execute(query)
+	rows=cur.fetchall()
+	header = [i[0] for i in cur.description]
+
+				
+
+	header=np.asarray(header)
+	rows=np.asarray(rows)
+	df=np.vstack((header,rows))
+	
+	ls=[]
+	ls.append([])
+	ls[0].append("Date")
+	ls[0].append("Airline")
+	ls[0].append("DelayType")
+	ls[0].append("DelayValue")
+	
+	count=1
+	for i in range(1,np.shape(df)[0]):
+		ls.append([])
+		for j in range(np.shape(df)[1]):
+			if j>=2 and df[i][j]>0:
+				ls[count].append(df[i][0])
+				ls[count].append(df[i][1])
+				ls[count].append(header[j])
+				ls[count].append(str(round(float(df[i][j]),2)))
+				count+=1
+				ls.append([])
+				#ls=ls+[df[i][:2]+[header[j]]+[str(df[i][j])]]
+	ls_new=[",".join(item) for item in ls]
+	np.savetxt("./MonthlyCSVs/MonthlyDelayTypeAirline.csv", ls_new, fmt='%s', delimiter=",")
+	cur.close()
+	
+
+
+#10 MonthlyDelayTypeAirline
+def MonthlyDelayTypeAirlineWoYear(startDate, endDate):
+	query = "SELECT DATE_FORMAT(FlightDate,'%%m') as yearWithMon, IATA_Airline, AVG(CarrierDelay) AS CarrierDelay, AVG(WeatherDelay) AS WeatherDelay, AVG(NASDelay) AS NASDelay, AVG(SecurityDelay) AS SecurityDelay, AVG(LateAircraftDelay) AS LateAircraftDelay FROM AllFlights_innodb WHERE Cancelled=0 and Diverted=0 AND `FlightDate` BETWEEN ('%s') AND ('%s') GROUP BY yearWithMon, IATA_Airline" % (startDate, endDate)
+	cur=db.connection.cursor()
+	cur.execute(query)
+	rows=cur.fetchall()
+	header = [i[0] for i in cur.description]
+				
+
+	header=np.asarray(header)
+	rows=np.asarray(rows)
+	df=np.vstack((header,rows))
+	
+	ls=[]
+	ls.append([])
+	ls[0].append("Month")
+	ls[0].append("Airline")
+	ls[0].append("DelayType")
+	ls[0].append("DelayValue")
+	
+	count=1
+	for i in range(1,np.shape(df)[0]):
+		ls.append([])
+		for j in range(np.shape(df)[1]):
+			if j>=2 and df[i][j]>0:
+				ls[count].append(df[i][0])
+				ls[count].append(df[i][1])
+				ls[count].append(header[j])
+				ls[count].append(str(round(float(df[i][j]),2)))
+				count+=1
+				ls.append([])
+	ls_new=[",".join(item) for item in ls]
+	
+
+	np.savetxt("./MonthlyCSVs/MonthlyDelayTypeAirlineWoYear.csv", ls_new, fmt='%s', delimiter=",")
+	cur.close()
+
+
+
+
+#11 YearMonthCanncelledAirline
+def YearMonthCanncelledAirline(startDate, endDate):
+	query = "SELECT DATE_FORMAT(FlightDate,'%%Y') as Year, DATE_FORMAT(FlightDate,'%%m') as Month, IATA_Airline AS Airline, SUM(Cancelled) AS TotalCancelled FROM AllFlights_innodb WHERE Diverted=0 AND `FlightDate` BETWEEN ('%s') AND ('%s') GROUP BY Year, Airline, Month" % (startDate, endDate)
+	cur=db.connection.cursor()
+	cur.execute(query)
+	rows=cur.fetchall()
+	# num_fields = len(cur.description)
+	header = [i[0] for i in cur.description]
+	header=np.asarray(header)
+	rows=np.asarray(rows)
+	df=np.vstack((header,rows))
+	np.savetxt("./MonthlyCSVs/YearMonthCanncelledAirline.csv", df, fmt='%s', delimiter=",")
+	cur.close()
+
+
+#12 Airport Count	
+#Airport with most delay (avg)
+def AirPortCount(startDate, endDate):
+	query = "SELECT Origin, DATE_FORMAT(FlightDate,'%%Y-%%m') as yearWithMon, COUNT(Origin) AS Count FROM AllFlights_myisam WHERE Cancelled=0 and Diverted=0 AND `FlightDate` BETWEEN ('%s') AND ('%s') GROUP BY Origin, yearWithMon" % (startDate, endDate)
+	cur=db.connection.cursor()
+	cur.execute(query)
+	rows=cur.fetchall()
+	header = [i[0] for i in cur.description]
+	header=np.asarray(header)
+	rows=np.asarray(rows)
+	df=np.vstack((header,rows))
+	np.savetxt("./MonthlyCSVs/AirPortCount.csv", df, fmt='%s', delimiter=",")
+	df2=pd.read_csv("./MonthlyCSVs/AirPortCount.csv")
+	df3=pd.pivot_table(df2,index=["Origin"],columns=["yearWithMon"], values=["Count"],aggfunc=np.mean)
+	df3.columns = df3.columns.droplevel(0)
+	df3.to_csv("./MonthlyCSVs/AirPortCount.csv")
+	cur.close()
+
+
+#13 Airline Count	
+#Airport with most delay (avg)
+def AirLineCount(startDate, endDate):
+	query = "SELECT IATA_Airline, DATE_FORMAT(FlightDate,'%%Y-%%m') as yearWithMon, Count(IATA_Airline) AS Count FROM AllFlights_myisam WHERE Cancelled=0 and Diverted=0 AND `FlightDate` BETWEEN ('%s') AND ('%s') GROUP BY IATA_Airline, yearWithMon" % (startDate, endDate)
+	cur=db.connection.cursor()
+	cur.execute(query)
+	rows=cur.fetchall()
+	header = [i[0] for i in cur.description]
+	header=np.asarray(header)
+	rows=np.asarray(rows)
+	df=np.vstack((header,rows))
+	np.savetxt("./MonthlyCSVs/AirLineCount.csv", df, fmt='%s', delimiter=",")
+	df2=pd.read_csv("./MonthlyCSVs/AirLineCount.csv")
+	df3=pd.pivot_table(df2,index=["IATA_Airline"],columns=["yearWithMon"], values=["Count"],aggfunc=np.mean)
+	df3.columns = df3.columns.droplevel(0)
+	df3.to_csv("./MonthlyCSVs/AirLineCount.csv")
 	cur.close()

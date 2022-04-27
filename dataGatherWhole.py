@@ -26,12 +26,12 @@ def AirLineArrDel(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/AirlineArrDelay.csv", df, fmt='%s', delimiter=",")
-	df2=pd.read_csv("./WholeCSVs/AirlineArrDelay.csv")
+	np.savetxt("./wholeCSVs/AirlineArrDelay.csv", df, fmt='%s', delimiter=",")
+	df2=pd.read_csv("./wholeCSVs/AirlineArrDelay.csv")
 	df3=pd.pivot_table(df2,index=["IATA_Airline"],values=["ArrDelay"],aggfunc=np.mean)
 	#df3=pd.pivot_table(df2,index=["IATA_Airline"],columns=["yearWithMon"], values=["ArrDelay"],aggfunc=np.mean)
 	#df3.columns = df3.columns.droplevel(0)
-	df3.to_csv("./WholeCSVs/AirlineArrDelay PT.csv")
+	df3.to_csv("./wholeCSVs/AirlineArrDelay PT.csv")
 	cur.close()
 
 
@@ -46,9 +46,9 @@ def AirLineDepDel(startDate, endDate):
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
 	np.savetxt("./WholeCSVs/AirlineDepDelay.csv", df, fmt='%s', delimiter=",")
-	df2=pd.read_csv("./WholeCSVs/AirlineDepDelay.csv")
+	df2=pd.read_csv("./wholeCSVs/AirlineDepDelay.csv")
 	df3=pd.pivot_table(df2,index=["IATA_Airline"],values=["DepDelay"],aggfunc=np.mean)
-	df3.to_csv("./WholeCSVs/AirlineDepDelay PT.csv")
+	df3.to_csv("./wholeCSVs/AirlineDepDelay PT.csv")
 	cur.close()
 
 def AirLineDel2(startDate, endDate):
@@ -76,14 +76,14 @@ def AirPortDepDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/AirPortDepDelay.csv", df, fmt='%s', delimiter=",")
-	df2=pd.read_csv("./WholeCSVs/AirPortDepDelay.csv")
+	np.savetxt("./wholeCSVs/AirPortDepDelay.csv", df, fmt='%s', delimiter=",")
+	df2=pd.read_csv("./wholeCSVs/AirPortDepDelay.csv")
 	df3=pd.pivot_table(df2,index=["Origin"],values=["DepDelay"],aggfunc=np.mean)
-	df3.to_csv("./WholeCSVs/AirPortDepDelay PT.csv")
+	df3.to_csv("./wholeCSVs/AirPortDepDelay PT.csv")
 	cur.close()
 
 def AirPortArrDelay(startDate, endDate):
-	query = "SELECT FlightDate, Origin, ArrDelay FROM allflights_innodb WHERE `FlightDate` BETWEEN ('%s') AND ('%s') " % (startDate, endDate)
+	query = "SELECT FlightDate, Dest, ArrDelay FROM allflights_myisam WHERE `FlightDate` BETWEEN ('%s') AND ('%s') " % (startDate, endDate)
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
@@ -92,10 +92,10 @@ def AirPortArrDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/AirPortArrDelay.csv", df, fmt='%s', delimiter=",")
-	df2=pd.read_csv("./WholeCSVs/AirPortArrDelay.csv")
-	df3=pd.pivot_table(df2,index=["Origin"],values=["ArrDelay"],aggfunc=np.mean)
-	df3.to_csv("./WholeCSVs/AirPortArrDelay PT.csv")
+	np.savetxt("./wholeCSVs/AirPortArrDelay.csv", df, fmt='%s', delimiter=",")
+	df2=pd.read_csv("./wholeCSVs/AirPortArrDelay.csv")
+	df3=pd.pivot_table(df2,index=["Dest"],values=["ArrDelay"],aggfunc=np.mean)
+	df3.to_csv("./wholeCSVs/AirPortArrDelay.csv")
 	cur.close()
 	
 
@@ -111,7 +111,7 @@ def YearlyDepDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/YearlyDepDelay.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/YearlyDepDelay.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def YearlyArrDelay(startDate, endDate):
@@ -124,7 +124,7 @@ def YearlyArrDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/YearlyArrDelay.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/YearlyArrDelay.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def MonthlyDepDelay(startDate, endDate):
@@ -137,7 +137,7 @@ def MonthlyDepDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/MonthlyDepDelay.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/MonthlyDepDelay.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def MonthlyArrDelay(startDate, endDate):
@@ -150,7 +150,7 @@ def MonthlyArrDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/MonthlyArrDelay.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/MonthlyArrDelay.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 
@@ -164,7 +164,7 @@ def MonthNameDepDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/MonthNameDepDelay.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/MonthNameDepDelay.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def MonthNameArrDelay(startDate, endDate):
@@ -177,7 +177,7 @@ def MonthNameArrDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/MonthNameArrDelay.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/MonthNameArrDelay.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def DailyDepDelay(startDate, endDate):
@@ -190,7 +190,7 @@ def DailyDepDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/DailyDepDelay.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/DailyDepDelay.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def DailyArrDelay(startDate, endDate):
@@ -203,7 +203,7 @@ def DailyArrDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/DailyArrDelay.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/DailyArrDelay.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 
@@ -217,7 +217,7 @@ def WeekdayDepDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/DayNameDepDelay.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/DayNameDepDelay.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def WeekdayArrDelay(startDate, endDate):
@@ -230,7 +230,7 @@ def WeekdayArrDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/DayNameArrDelay.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/DayNameArrDelay.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 	#03
@@ -247,7 +247,7 @@ def StateDepOrigin(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/StateDepOrigin.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/StateDepOrigin.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def StateArrDest(startDate, endDate):
@@ -260,7 +260,7 @@ def StateArrDest(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/StateArrDest.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/StateArrDest.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def CityDepOrigin(startDate, endDate):
@@ -273,7 +273,7 @@ def CityDepOrigin(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/CityDepOrigin.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/CityDepOrigin.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def CityArrDest(startDate, endDate):
@@ -286,7 +286,7 @@ def CityArrDest(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/CityArrDest.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/CityArrDest.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 
@@ -302,7 +302,7 @@ def AirlineDelayType(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/AirlineDelayType.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/AirlineDelayType.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def AirportOriginDelayType(startDate, endDate):
@@ -315,7 +315,7 @@ def AirportOriginDelayType(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/AirportOriginDelayType.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/AirportOriginDelayType.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def AirportDestDelayType(startDate, endDate):
@@ -328,7 +328,7 @@ def AirportDestDelayType(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/AirportDestDelayType.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/AirportDestDelayType.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 
@@ -344,7 +344,7 @@ def AirlineCancellations(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/AirlineCancellations.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/AirlineCancellations.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 
@@ -358,7 +358,7 @@ def AirportCancellations(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/AirportCancellations.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/AirportCancellations.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 
@@ -374,13 +374,13 @@ def AirlineCancelDist(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/AirlineCancelDist.csv", df, fmt='%s', delimiter=",")
-	df2=pd.read_csv("./WholeCSVs/AirlineCancelDist.csv")
+	np.savetxt("./wholeCSVs/AirlineCancelDist.csv", df, fmt='%s', delimiter=",")
+	df2=pd.read_csv("./wholeCSVs/AirlineCancelDist.csv")
 	df3=pd.pivot_table(df2,index=["IATA_Airline"], columns=["Description"], values=["count(c.Description)"],aggfunc=np.mean)
 	#print(df3.iloc[1][0],df3.iloc[2][0])
 	#df3[1][0]=df3[2][0]
 	df3.columns = df3.columns.droplevel(0)
-	df3.to_csv("./WholeCSVs/AirlineCancelDist PT.csv")
+	df3.to_csv("./wholeCSVs/AirlineCancelDist PT.csv")
 	cur.close()
 
 
@@ -394,11 +394,11 @@ def AirportOriginCancelDist(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/AirportOriginCancelDist.csv", df, fmt='%s', delimiter=",")
-	df2=pd.read_csv("./WholeCSVs/AirportOriginCancelDist.csv")
+	np.savetxt("./wholeCSVs/AirportOriginCancelDist.csv", df, fmt='%s', delimiter=",")
+	df2=pd.read_csv("./wholeCSVs/AirportOriginCancelDist.csv")
 	df3=pd.pivot_table(df2,index=["Origin"], columns=["Description"], values=["count(c.Description)"],aggfunc=np.mean)
 	df3.columns = df3.columns.droplevel(0)
-	df3.to_csv("./WholeCSVs/AirportOriginCancelDist PT.csv")
+	df3.to_csv("./wholeCSVs/AirportOriginCancelDist PT.csv")
 	cur.close()
 
 def AirportDestCancelDist(startDate, endDate):
@@ -411,18 +411,19 @@ def AirportDestCancelDist(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/AirportDestCancelDist.csv", df, fmt='%s', delimiter=",")
-	df2=pd.read_csv("./WholeCSVs/AirportDestCancelDist.csv")
+	np.savetxt("./wholeCSVs/AirportDestCancelDist.csv", df, fmt='%s', delimiter=",")
+	df2=pd.read_csv("./wholeCSVs/AirportDestCancelDist.csv")
 	df3=pd.pivot_table(df2,index=["Dest"], columns=["Description"], values=["count(c.Description)"],aggfunc=np.mean)
 	df3.columns = df3.columns.droplevel(0)
-	df3.to_csv("./WholeCSVs/AirportDestCancelDist PT.csv")
+	df3.to_csv("./wholeCSVs/AirportDestCancelDist PT.csv")
 	cur.close()
 
 
 	#07
 	#Routes with most delay
 def RouteDelay(startDate, endDate):
-	query = "SELECT Origin, Dest, CONCAT(Origin, '-', Dest) AS OrigDest, AVG(DepDelay+ArrDelay) AS TotalDelay FROM allflights_innodb WHERE `FlightDate` BETWEEN ('%s') AND ('%s') GROUP BY Origin, Dest" % (startDate, endDate)
+	#query = "SELECT Origin, Dest, CONCAT(Origin, '-', Dest) AS OrigDest, AVG(DepDelay+ArrDelay) AS TotalDelay FROM allflights_innodb WHERE `FlightDate` BETWEEN ('%s') AND ('%s') GROUP BY Origin, Dest" % (startDate, endDate)
+	query = "SELECT Origin, Dest, AVG(DepDelay+ArrDelay) AS AverageDelay, count(Dest) AS numOfFlights FROM allflights_myisam WHERE count(Dest)>=(%s) AND `FlightDate` BETWEEN ('%s') AND ('%s') GROUP BY Origin, Dest" % (5000, startDate, endDate)
 	cur=db.connection.cursor()
 	cur.execute(query)
 	rows=cur.fetchall()
@@ -431,7 +432,7 @@ def RouteDelay(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/RouteDelay.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/RouteDelay.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 	#08
@@ -446,7 +447,7 @@ def TailNumberTaxiOut(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/TailNumberTaxiOut.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/TailNumberTaxiOut.csv", df, fmt='%s', delimiter=",")
 	cur.close()
 
 def TailNumberTaxiIn(startDate, endDate):
@@ -459,5 +460,40 @@ def TailNumberTaxiIn(startDate, endDate):
 	header=np.asarray(header)
 	rows=np.asarray(rows)
 	df=np.vstack((header,rows))
-	np.savetxt("./WholeCSVs/TailNumberTaxiIn.csv", df, fmt='%s', delimiter=",")
+	np.savetxt("./wholeCSVs/TailNumberTaxiIn.csv", df, fmt='%s', delimiter=",")
+	cur.close()
+
+
+#09 AirlineCount
+def AirlineCount(startDate, endDate):
+	query = "SELECT Origin AS Airport, COUNT(Origin) AS Outbound FROM AllFlights_innodb WHERE `FlightDate` BETWEEN ('%s') AND ('%s') GROUP BY Origin" % (startDate, endDate)
+	cur=db.connection.cursor()
+	cur.execute(query)
+	rows=cur.fetchall()
+	num_fields = len(cur.description)
+	header = [i[0] for i in cur.description]
+	header=np.asarray(header)
+	rows=np.asarray(rows)
+	df=np.vstack((header,rows))
+	np.savetxt("./wholeCSVs/AirlineCount.csv", df, fmt='%s', delimiter=",")
+	df2=pd.read_csv("./wholeCSVs/AirlineCount.csv")
+	df2=df2.sort_values('Outbound',ascending=False)
+	rec=df2.shape[0]
+	df2['Tag']=""
+	#df2['index']=""
+	cnt=0
+	for index, row in df2.iterrows():
+		#cnt+=1
+		if(cnt<rec/3):
+			df2.loc[index,'Tag']=2
+			#df2.loc[index,'index']=cnt
+		elif(cnt<2*rec/3):
+			df2.loc[index,'Tag']=1
+			#df2.loc[index,'index']=cnt
+		else:
+			df2.loc[index,'Tag']=0
+			#df2.loc[index,'index']=cnt
+		cnt+=1
+	
+	df2.to_csv("./wholeCSVs/AirlineCount.csv",index=0)
 	cur.close()
