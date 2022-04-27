@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>APM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" /> -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter2/1.4.6/crossfilter.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.2.0/dc.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/dc_edited.css">
+    <script type="text/javascript">
+        $(function() {
+            $("#navigation").load("navigation.html");
+        });
+    </script>
+    <style>
+        .myButton {
+            background-color: #323f35;
+            -webkit-border-radius: 28px;
+            -moz-border-radius: 28px;
+            border-radius: 8px;
+            border: 3px solid #18ab38;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 17px;
+            padding: 16px 31px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #2f6627;
+        }
+        
+        .myButton:hover {
+            background-color: #5cbf2a;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navigation"></div>
+    <div class="container-fluid">
+        <!-- <centre>
+      <h3>Bar Chart Race showing top cumulative usage</h3>
+
+      <img src="/static/AL_BCR.gif">
+      <br>
+    </centre> -->
+        <h3>
+            <center>Airline Cancellation Analysis
+                <center>
+        </h3>
+
+        <div id="test" style="border: thick double #32a1ce; padding-right: 5px; margin-right: 5px;">
+            <h5>
+                <center>Airlines
+                    <center>
+            </h5>
+        </div>
+
+        <div id="month" style="border: thick double #32a1ce; margin-right: 5px;">
+            <h5>
+                <center>Month of the year
+                    <center>
+            </h5>
+        </div>
+
+        <div id="year" style="border: thick double #32a1ce; margin-right: 5px;">
+            <h5>
+                <center>Year
+                    <center>
+            </h5>
+        </div>
+        <br><br>
+        <div id="delay" style="border: thick double #32a1ce; margin-top: 5px;">
+            <h5>
+                <center>Year Month Values<center>
+            </h5>
+        </div>
+        <a id='link' href="" target="_blank" class="myButton">Cancellation Cause</a>
+        <br><br><br>
+        <!-- <button class="myButton" onclick="dc.filterAll(); dc.renderAll(); resetAxisLabel();">Reset All</button> -->
+        <button class="myButton" onclick="window.location.href=window.location.href">Reset All</button>
+            
+    </div>
+
+
+    <script type="text/javascript">
+        var chart = new dc.rowChart("#test");
+        var monthchart = new dc.rowChart("#month");
+        var yearChart = new dc.rowChart("#year");
+        var avgChart = new dc.barChart("#delay");
+
+
+
+
+        d3.csv("static/Files/YearMonthCanncelledAirline.csv", function(data) {
+
+            data.forEach(function(x) {
+                x.TotalCancelled = x.TotalCancelled;
+            });
+
+
+            var ndx = crossfilter(data),
+                runDimension = ndx.dimension(function(d) {return d.Airline;}),                
+			    yearDimension = ndx.dimension(function(d) {return d.Date.split("-")[0];}),
+			    monthDimension = ndx.dimension(function(d) {return d.Date.split("-")[1];}),
+                avgDimension = ndx.dimension(function(d) {return (d.Date);}),
+
+                monthSumGroup = monthDimension.group().reduceSum(function(d) {return d.TotalCancelled / 1000;}),
+                yearSumGroup = yearDimension.group().reduceSum(function(d) {return d.TotalCancelled / 1000;}),
+                avgSumGroup = avgDimension.group().reduceSum(function(d) {return d.TotalCancelled;}),
+                speedSumGroup = runDimension.group().reduceSum(function(d) {return d.TotalCancelled / 1000;});
+
+
+            chart
+                .width(600)
+                .height(350)
+
+            .margins({
+                    top: 10,
+                    right: 0,
+                    bottom: 60,
+                    left: 40
+                })
+                .x(d3.scale.linear().domain([6, 20]))
+                .elasticX(true)
+                .colorAccessor(function(d) {
+
+                    //   if (d.value > 100) {
+                    //       return "test1";
+                    //   }
+                    //   if (d.value > 90) {
+                    //       return "test2";
+                    //   }
+                    // if (d.value > 80) {
+                    //       return "test3";
+                    //   }
+                    //   if (d.value > 70) {
+                    //       return "test4";
+                    //   }
+                    //   if (d.value > 60) {
+                    //       return "test5";
+                    //   }
+                    //   if (d.value > 50) {
+                    //       return "test6";
+                    //   }
+                    // if (d.value > 40) {
+                    //       return "test7";
+                    //   }
+                    //   if (d.value > 30) {
+                    //       return "test8";
+                    //   }
+                    //   if (d.value > 20) {
+                    //       return "test9";
+                    //   }
+                    if (d.value > 0) {
+                        return "test10";
+                    }
+                })
+                .colors(d3.scale.ordinal().domain(["test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9", "test10"])
+                    .range(["#EB1A00", "#D63300", "#C24D00", "#AD6600", "#998000", "#859900", "#70B300", "#5CCC00", "#47E600", "skyblue"]))
+
+
+            .dimension(runDimension)
+                .group(speedSumGroup)
+                /*
+                .renderlet(function (chart) {
+                              chart.selectAll("g.tick ")
+                              .attr('dx', '-30')
+                              .attr("rotate(75)");
+                      
+                          })*/
+
+            .render();
+
+            monthchart
+                .width(500)
+                .height(350)
+                .x(d3.scale.linear().domain([6, 20]))
+
+            .margins({
+                    top: 10,
+                    right: 10,
+                    bottom: 60,
+                    left: 40
+                })
+                .colorAccessor(function(d) {
+
+                    //   if (d.value > 100) {
+                    //       return "test1";
+                    //   }
+                    //   if (d.value > 90) {
+                    //       return "test2";
+                    //   }
+                    // if (d.value > 80) {
+                    //       return "test3";
+                    //   }
+                    //   if (d.value > 70) {
+                    //       return "test4";
+                    //   }
+                    //   if (d.value > 60) {
+                    //       return "test5";
+                    //   }
+                    //   if (d.value > 50) {
+                    //       return "test6";
+                    //   }
+                    // if (d.value > 40) {
+                    //       return "test7";
+                    //   }
+                    //   if (d.value > 30) {
+                    //       return "test8";
+                    //   }
+                    //   if (d.value > 20) {
+                    //       return "test9";
+                    //   }
+                    if (d.value > 0) {
+                        return "test10";
+                    }
+                })
+                .colors(d3.scale.ordinal().domain(["test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9", "test10"])
+                    .range(["#EB1A00", "#D63300", "#C24D00", "#AD6600", "#998000", "#859900", "#70B300", "#5CCC00", "#47E600", "skyblue"]))
+
+            .elasticX(true)
+                .dimension(monthDimension)
+                .group(monthSumGroup)
+                .renderlet(function(mchart) {
+                    mchart.selectAll("g.transform")
+                        .attr('rotate', '90');
+
+                })
+                .render();
+
+            yearChart
+                .width(450)
+                .height(350)
+
+            .margins({
+                    top: 10,
+                    right: 30,
+                    bottom: 60,
+                    left: 40
+                })
+                .x(d3.scale.linear().domain([1, 20]))
+                //.ordinal.color(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00'])
+                .colorAccessor(function(d) {
+
+                    if (d.key == 2015) {
+                        return "test1";
+                    }
+                    if (d.key == 2016) {
+                        return "test2";
+                    }
+                    if (d.key == 2017) {
+                        return "test3";
+                    }
+                    if (d.key == 2018) {
+                        return "test4";
+                    }
+                    if (d.key == 2019) {
+                        return "test5";
+                    }
+                })
+                .colors(d3.scale.ordinal().domain(["test1", "test2", "test3", "test4", "test5"])
+                    .range(["red", "orange", "yellow", "lightgreen", "darkgreen"]))
+
+            .elasticX(true)
+                .dimension(yearDimension)
+                .group(yearSumGroup)
+                .render();
+
+
+
+            avgChart
+                .width(1800)
+                .height(400)
+                .margins({
+                    top: 10,
+                    right: 10,
+                    bottom: 100,
+                    left: 60
+                })
+                .x(d3.scale.ordinal())
+                .xUnits(dc.units.ordinal)
+                .brushOn(true)
+                .elasticY(true)
+                .dimension(avgDimension)
+                .group(avgSumGroup)
+                .colorAccessor(function(d) {
+                    if (d.key.split("-")[0] == 2015) {
+                        //console.log(d.key.split("-")[0]);
+                        return "test1";
+                    }
+                    if (d.key.split("-")[0] == 2016) {
+                        return "test2";
+                    }
+                    if (d.key.split("-")[0] == 2017) {
+                        return "test3";
+                    }
+                    if (d.key.split("-")[0] == 2018) {
+                        return "test4";
+                    }
+                    if (d.key.split("-")[0] == 2019) {
+                        return "test5";
+                    }
+                })
+                .colors(d3.scale.ordinal().domain(["test1", "test2", "test3", "test4", "test5"])
+                    .range(["red", "orange", "yellow", "lightgreen", "darkgreen"]))
+                .controlsUseVisibility(true)
+                .addFilterHandler(function(filters, filter) {
+                    return [filter];
+                }) // this
+                .renderlet(function(chart) {
+                    chart.selectAll("g.x text")
+                        .attr('dx', '-30')
+                        .attr('transform', "translate(-12,0) rotate(-70)");
+
+                })
+                .ordering(function(d) {
+        if(d.key.split("-")[0] == "2015")
+	{
+	if(d.key.split("-")[1] == "Jan") return 1;
+        else if(d.key.split("-")[1] == "Feb") return 2;
+        else if(d.key.split("-")[1] == "Mar") return 3;
+        else if(d.key.split("-")[1]== "Apr") return 4;
+        else if(d.key.split("-")[1] == "May") return 5;
+        else if(d.key.split("-")[1] == "Jun") return 6;
+        else if(d.key.split("-")[1] == "Jul") return 7;
+        else if(d.key.split("-")[1]== "Aug") return 8;
+        else if(d.key.split("-")[1] == "Sep") return 9;
+        else if(d.key.split("-")[1] == "Oct") return 10;
+        else if(d.key.split("-")[1] == "Nov") return 11;
+        else if(d.key.split("-")[1] == "Dec") return 12;
+        else return 111;
+	}
+	else if(d.key.split("-")[0] == "2017")
+	{
+	if(d.key.split("-")[1] == "Jan") return 25;
+        else if(d.key.split("-")[1] == "Feb") return 26;
+        else if(d.key.split("-")[1] == "Mar") return 27;
+        else if(d.key.split("-")[1]== "Apr") return 28;
+        else if(d.key.split("-")[1] == "May") return 29;
+        else if(d.key.split("-")[1] == "Jun") return 30;
+        else if(d.key.split("-")[1] == "Jul") return 31;
+        else if(d.key.split("-")[1]== "Aug") return 32;
+        else if(d.key.split("-")[1] == "Sep") return 33;
+        else if(d.key.split("-")[1] == "Oct") return 34;
+        else if(d.key.split("-")[1] == "Nov") return 35;
+        else if(d.key.split("-")[1] == "Dec") return 36;
+        else return 111;
+	}
+	else if(d.key.split("-")[0] == "2016")
+	{
+	if(d.key.split("-")[1] == "Jan") return 13;
+        else if(d.key.split("-")[1] == "Feb") return 14;
+        else if(d.key.split("-")[1] == "Mar") return 15;
+        else if(d.key.split("-")[1]== "Apr") return 16;
+        else if(d.key.split("-")[1] == "May") return 17;
+        else if(d.key.split("-")[1] == "Jun") return 18;
+        else if(d.key.split("-")[1] == "Jul") return 19;
+        else if(d.key.split("-")[1]== "Aug") return 20;
+        else if(d.key.split("-")[1] == "Sep") return 21;
+        else if(d.key.split("-")[1] == "Oct") return 22;
+        else if(d.key.split("-")[1] == "Nov") return 23;
+        else if(d.key.split("-")[1] == "Dec") return 24;
+        else return 111;
+	}
+	else if(d.key.split("-")[0] == "2018")
+	{
+	if(d.key.split("-")[1] == "Jan") return 37;
+        else if(d.key.split("-")[1] == "Feb") return 38;
+        else if(d.key.split("-")[1] == "Mar") return 39;
+        else if(d.key.split("-")[1]== "Apr") return 40;
+        else if(d.key.split("-")[1] == "May") return 41;
+        else if(d.key.split("-")[1] == "Jun") return 42;
+        else if(d.key.split("-")[1] == "Jul") return 43;
+        else if(d.key.split("-")[1]== "Aug") return 44;
+        else if(d.key.split("-")[1] == "Sep") return 45;
+        else if(d.key.split("-")[1] == "Oct") return 46;
+        else if(d.key.split("-")[1] == "Nov") return 47;
+        else if(d.key.split("-")[1] == "Dec") return 48;
+        else return 111;
+	}
+	else if(d.key.split("-")[0] == "2019")
+	{
+	if(d.key.split("-")[1] == "Jan") return 49;
+        else if(d.key.split("-")[1] == "Feb") return 50;
+        else if(d.key.split("-")[1] == "Mar") return 51;
+        else if(d.key.split("-")[1]== "Apr") return 52;
+        else if(d.key.split("-")[1] == "May") return 53;
+        else if(d.key.split("-")[1] == "Jun") return 54;
+        else if(d.key.split("-")[1] == "Jul") return 55;
+        else if(d.key.split("-")[1]== "Aug") return 56;
+        else if(d.key.split("-")[1] == "Sep") return 57;
+        else if(d.key.split("-")[1] == "Oct") return 58;
+        else if(d.key.split("-")[1] == "Nov") return 59;
+        else if(d.key.split("-")[1] == "Dec") return 60;
+        else return 111;
+	}
+	else return 111;
+	})		
+                .render();                ;
+            let link = document.getElementById("link");
+            link.onclick = changelink;
+
+            function changelink() {
+                let link = document.getElementById("link");
+                var airlist = runDimension.top(10);
+                console.log(airlist[0]);
+                var mon = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+                var unique = [];
+                var distinct = [];
+                for (let i = 0; i < airlist.length; i++) {
+                    if (!unique[airlist[i].Date.split("-")[0]]) {
+                        distinct.push(airlist[i].Date.split("-")[0]);
+                        unique[airlist[i].Date.split("-")[0]] = 1;
+                    }
+                }
+                var month = airlist[0].Date.split("-")[0];
+                if (distinct.length > 1) {
+                    month = "";
+                }
+
+
+                var dunique = [];
+                var ddistinct = [];
+                for (let i = 0; i < airlist.length; i++) {
+                    if (!dunique[airlist[i].Date.split("-")[1]]) {
+                        ddistinct.push(airlist[i].Date.split("-")[1]);
+                        dunique[airlist[i].Date.split("-")[1]] = 1;
+                    }
+                }
+                var day = (airlist[0].Date.split("-")[1]);
+                if (ddistinct.length > 1) {
+                    day = "";
+                }
+
+
+                var aunique = [];
+                var adistinct = [];
+                for (let i = 0; i < airlist.length; i++) {
+                    if (!aunique[airlist[i].Airline]) {
+                        adistinct.push(airlist[i].Airline);
+                        aunique[airlist[i].Airline] = 1;
+                    }
+                }
+                var airline = "of " + airlist[0].Airline;
+                if (adistinct.length > 1) {
+                    airline = "";
+                }
+
+
+
+                link.href = 'http://www.google.com/search?q=' + month + ' ' + day + ' flight cancellation in US  ' + airline;
+            }
+
+
+            function AddXAxis(chartToUpdate, displayText) {
+                console.log(chartToUpdate);
+                chartToUpdate.svg()
+                    .append("text")
+                    .attr("class", "y-axis-label")
+                    .attr("text-anchor", "middle")
+                    .attr("dx", '50')
+                    .attr("x", chartToUpdate.width() / 2.5)
+                    .attr("y", chartToUpdate.height() - 25.5)
+                    .text(displayText);
+            }
+
+            function AddAxis(chartToUpdate, displayText) {
+                console.log(chartToUpdate);
+                chartToUpdate.svg()
+                    .append("text")
+                    .attr("class", "x-axis-label")
+                    .attr("text-anchor", "middle")
+                    .attr("dx", '50')
+                    .attr("x", chartToUpdate.width() / 2.1)
+                    .attr("y", chartToUpdate.height() - 14.5)
+                    .text(displayText);
+            }
+
+
+            function resetAxisLabel()
+            {
+                AddXAxis(chart, "Total Cancelled Flights in Thousands ");
+                AddXAxis(monthchart, "Total Cancelled Flights in Thousands");
+                AddAxis(avgChart, "Time");
+                AddXAxis(yearChart, "Total Cancelled Flights in Thousands");
+            }
+
+            AddXAxis(chart, "Total Cancelled Flights in Thousands ");
+            AddXAxis(monthchart, "Total Cancelled Flights in Thousands");
+            AddAxis(avgChart, "Time");
+            AddXAxis(yearChart, "Total Cancelled Flights in Thousands");
+
+        });
+        
+    </script>
+
+</body>
+
+</html>

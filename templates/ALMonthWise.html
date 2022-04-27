@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>APM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/styles.css">
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#navigation").load("navigation.html");
+        });
+    </script>
+
+    <style type="text/css">
+        #chartContainer {
+            /* margin: 5px; */
+            width: 75vw;
+            height: 65vh;
+            padding: 0px;
+            margin-left: 45px;
+            margin-right: 0px;
+        }
+        
+        /* .button {
+            margin: 0px 2px 0px 2px;
+            height: 30px;
+            position: relative;
+            width: 50px;
+            vertical-align: text-top;
+        } */
+        .btn{
+            margin: 0px 5px 0px 5px;
+            height: 40px;
+            position: relative;
+            width: 70px;
+            vertical-align: text-top;
+
+        }
+        #btext {
+            height: 30px;
+            position: relative;
+            width: 50px;
+            padding: 10px;
+        }
+        
+        #Legend {
+            position: relative;
+            left: 19vw;
+            top: 20vh;
+        }
+        /* h1 {
+            font-size: 30px;
+            font-family: Helvetica;
+        } */
+        
+        #transition_click {
+            margin: auto;
+            width: auto;
+            height: auto;
+            padding: 10px;
+        }
+        
+        #init_legend {
+            position: relative;
+            left: 19vw;
+        }
+        /*=======================================*/
+    </style>
+</head>
+
+<body>
+
+    <div id="navigation"></div>
+    <div class="container-fluid">
+        <h1>
+            Airline Delay Analysis
+        </h1>
+        <div id="option">
+            <input name="updateButton" type="button" id="transition_click" value="Click Here To Find Out!" onclick="updateData()" />
+        </div>
+        <div class="row">
+            <div id="chartContainer" style="position: relative; overflow: hidden;"></div>
+            <div class="row ml-2" style="font-size:15px;max-width: 20%;">
+                <ul><span style="font-size: 24px;"><b><u>Types of Delay:</u></b></span>
+                    <li><span style="font-size: 17px;"><b>Late Aircraft Delay: </b></span><br>Arrival delay at an airport due to the late arrival of the same aircraft at a previous airport. The ripple effect of an earlier delay at downstream airports is referred to as delay propagation.</li>
+                    <li><span style="font-size: 17px;"><b>Carrier Delay: </b></span><br>Delays due to circumstances within the airline's control (e.g. maintenance or crew problems, aircraft cleaning, baggage loading, fueling, etc.)</li>
+                    <li><span style="font-size: 17px;"><b>National Aviation System(NAS) Delay: </b></span><br>Delays that refer to a broad set of conditions, such as non-extreme weather conditions, airport operations, heavy traffic volume, and air traffic control.</li>                    
+                    <li><span style="font-size: 17px;"><b>Weather Delay: </b></span><br>Significant meteorological conditions (actual or forecasted) that, in the judgment of the carrier, delays the operation of a flight (e.g. tornado, blizzard or hurricane).</li>
+                    <li><span style="font-size: 17px;"><b>Security Delay: </b></span><br>Delays caused by evacuation of a terminal or concourse, re-boarding of aircraft because of security breach, inoperative screening equipment and/or long linesin excess of 29 minutes at screening areas.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        d3.select('#option').remove()
+        d3.select('#init').remove()
+
+        d3.select("p").html("")
+            /*
+            d3.select('label')
+              .append('input')
+              .attr('type', 'checkbox')
+    
+            d3.select('label')
+              .append('tspan')
+              .text('Sort by Revenue')
+            */
+
+        let svg = dimple.newSvg("#chartContainer", height = '100%', width = '100%')
+        d3.csv("static/files/MonthlyDelayTypeAirlineWoYear.csv", function(error, data) {
+            let tempdata = data;
+            let myChart = new dimple.chart(svg, data);
+            // myChart.setMargins("-75%", "4%", "7%", "10%")
+            myChart.setMargins("5%", "2%", "7%", "8%")
+            let x = myChart.addMeasureAxis("x", 'DelayValue');
+            x.tickFormat = '.01f';
+            let y = myChart.addCategoryAxis("y", "Airline");
+            let firstSeries = myChart.addSeries("DelayType", dimple.plot.bar, [x, y]);
+            let myLegend = myChart.addLegend("-20%", "10%", "10%", "10%", "left", firstSeries);
+
+            // Sort by 2015 Airline Revenue
+            //d3.select("input").on("change", change);
+
+            function change() {
+                myChart.draw(1000);
+                fix_labels2();
+            }
+
+            // Add Buttons For Filtering by Month
+            d3.select("body")
+                .append('btext')
+                .attr("id", "btext")
+                .html(`<span style="font-size: 24px">Month Filter:<span>`)
+
+            let buttonNames = ["All", "None", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
+
+            d3.select("body")
+                .selectAll("input")
+                .data(buttonNames)
+                .enter()
+                .append("input")
+                .attr("type", "button")
+                .attr("class", "btn btn-dark")
+                .attr("value", function(d) {
+                    return d;
+                })
+                .attr("id", function(d) {
+                    return d;
+                })
+
+            d3.select("body")
+                .append("bot_text")
+
+            // d3.select("bot_text")
+            //     .append("t1")
+            //     .html("<br><br>Guide:<br>")
+
+            // d3.select("bot_text")
+            //     .append("t2")
+            //     .html("<b>National Aviation System (NAS) Delay: <b>")
+
+            // d3.select("bot_text")
+            //     .append("t3")
+            //     .html("Delays that refer to a broad set of conditions, such as non-extreme weather conditions, airport operations, heavy traffic volume, and air traffic control.<br>")
+
+            // d3.select("bot_text")
+            //     .append("t4")
+            //     .html("<b>Carrier Delay: <b>")
+
+            // d3.select("bot_text")
+            //     .append("t5")
+            //     .html("Delays due to circumstances within the airline's control (e.g. maintenance or crew problems, aircraft cleaning, baggage loading, fueling, etc.)<br>")
+
+            // d3.select("bot_text")
+            //     .append("t6")
+            //     .html("<b>Weather Delay: <b>")
+
+            // d3.select("bot_text")
+            //     .append("t7")
+            //     .html("Significant meteorological conditions (actual or forecasted) that, in the judgment of the carrier, delays the operation of a flight (e.g. tornado, blizzard or hurricane).<br>")
+
+            // d3.select("bot_text")
+            //     .append("t8")
+            //     .html("<b>Security Delay: <b>")
+
+            // d3.select("bot_text")
+            //     .append("t9")
+            //     .html("Delays caused by evacuation of a terminal or concourse, re-boarding of aircraft because of security breach, inoperative screening equipment and/or long lines in excess of 29 minutes at screening areas.")
+
+
+
+            myChart.draw(800);
+
+
+
+            window.onresize = function() {
+                myChart.draw(0, true);
+                fix_labels2();
+            };
+
+            // Encode Y Ticks with Revenue Information
+            var revenueArray = {};
+            d3.select('g.dimple-axis.dimple-axis-y')
+                .data(data)
+                .selectAll('g.tick')
+                .select('text')
+                .attr("transform", "translate(0,-6)")
+
+            d3.select('g.dimple-axis.dimple-axis-y')
+                .data(data)
+                .selectAll('g.tick')
+                .append('text')
+                .text(function(d) {
+                    return revenueArray[d]
+                })
+                .attr('id', 'revenue_tick')
+                .attr("transform", "translate(-30,-30)")
+
+
+            // Ensure Axis and Tick Label Integrity After Redraw
+            function fix_labels() {
+
+                d3.selectAll('#revenue_tick')
+                    .attr("transform", "translate(-10,-9)")
+
+                x.titleShape.text("Delay (minutes)")
+                //x.titleShape.text(`<span style="font-size: 24px">Delay (minutes):<span>`)
+                
+                y.titleShape.text("Airline ")
+            }
+
+            function fix_labels2() {
+
+                d3.selectAll('#revenue_tick')
+                    .attr("transform", "translate(-1,9)")
+
+                x.titleShape.text(" Delay (minutes)")
+                y.titleShape.text("Airliness ")
+            }
+
+            // Interactive Legend
+            myChart.legends = [];
+            svg.selectAll("title_text")
+                .data(["Click legend to", "show/hide delay types:"])
+                .enter()
+                .append("text")
+                .attr("x", function() {
+                    var leg_x = d3.select('.dimple-legend').select('.dimple-legend-text').attr('x');
+                    return (leg_x - 22);
+                })
+                .attr("y", function(d, i) {
+                    var leg_y = d3.select('.dimple-legend').select('.dimple-legend-text').attr('y');
+                    return (leg_y - 30) + i * 14;
+                })
+                // .style("font-family", "sans-serif")
+                .style("font-size", "13px")
+                .style("color", "Black")
+                .attr("id", "Legend")
+                .text(function(d) {
+                    return d;
+                });
+
+            d3.selectAll('.dimple-legend')
+                .attr('id', 'Legend');
+
+            // Get a unique list of Owner values to use when filtering
+            var filterValues = dimple.getUniqueValues(data, "DelayType");
+            //console.log(filterValues);
+            // Get all the rectangles from our now orphaned legend
+            myLegend.shapes.selectAll("rect")
+                // Add a click event to each rectangle
+                .on("click", function(e) {
+                    // This indicates whether the item is already visible or not
+                    var hide = false;
+                    var newFilters = [];
+                    // If the filters contain the clicked shape hide it
+                    console.log(filterValues);
+                    filterValues.forEach(function(f) {
+                        if (f === e.aggField.slice(-1)[0]) {
+                            hide = true;
+                        } else {
+                            newFilters.push(f);
+                        }
+                    });
+                    // Hide the shape or show it
+                    if (hide) {
+                        d3.select(this).style("opacity", 0.2);
+                    } else {
+                        newFilters.push(e.aggField.slice(-1)[0]);
+                        d3.select(this).style("opacity", 0.8);
+                    }
+                    // Update the filters
+                    console.log(newFilters);
+                    filterValues = newFilters;
+
+                    // Filter the data
+                    var monthData = dimple.filterData(data, 'Month', monthFilters);
+                    myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+
+                    myChart.draw(800);
+                    fix_labels2();
+
+                });
+
+            // To Change Month Value, get its location
+            var monthValue = document.getElementById('Month');
+
+            // Initialize Month Filters
+            monthFilters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+            var monthData = dimple.filterData(data, 'Month', monthFilters);
+
+            function minusMon(array, mon) {
+                i = array.indexOf(mon);
+                array.splice(i, 1);
+                return array;
+            }
+
+            // Add eventhandlers for buttons here
+            d3.select("#All").on("click", function() {
+
+                var i, s, allArray = ['#Jan', '#Feb', '#Mar', '#Apr', "#May", "#Jun", "#Jul", "#Aug", "#Sept", "#Oct", "#Nov", "#Dec"],
+                    len = allArray.length;
+                for (i = 0; i < len; ++i) {
+                    if (i in allArray) {
+                        s = allArray[i];
+                        d3.select(s).style("opacity", 1);
+                    }
+                }
+
+                monthFilters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                console.log()
+                myChart.draw(700);
+                fix_labels2();
+            });
+
+            // Select None button
+            d3.select("#None").on("click", function() {
+
+                var i, s, allArray = ['#Jan', '#Feb', '#Mar', '#Apr', "#May", "#Jun", "#Jul", "#Aug", "#Sept", "#Oct", "#Nov", "#Dec"],
+                    len = allArray.length;
+                for (i = 0; i < len; ++i) {
+                    if (i in allArray) {
+                        s = allArray[i];
+                        d3.select(s).style("opacity", 0.2);
+                    }
+                }
+
+
+                monthFilters = []; //['1','2','3','4','5','6','7','8','9','10','11','12'];
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                console.log()
+                myChart.draw(700);
+                fix_labels2();
+            });
+
+            d3.select("#Jan").on("click", function() {
+
+                if (monthFilters.indexOf('1') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '1');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('1');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+            d3.select("#Feb").on("click", function() {
+
+                if (monthFilters.indexOf('2') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '2');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('2');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+            d3.select("#Mar").on("click", function() {
+
+                if (monthFilters.indexOf('3') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '3');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('3');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+            d3.select("#Apr").on("click", function() {
+
+                if (monthFilters.indexOf('4') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '4');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('4');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+            d3.select("#May").on("click", function() {
+
+                if (monthFilters.indexOf('5') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '5');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('5');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+            d3.select("#Jun").on("click", function() {
+
+                if (monthFilters.indexOf('6') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '6');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('6');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+            d3.select("#Jul").on("click", function() {
+
+                if (monthFilters.indexOf('7') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '7');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('7');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+            d3.select("#Aug").on("click", function() {
+
+                if (monthFilters.indexOf('8') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '8');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('8');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+            d3.select("#Sept").on("click", function() {
+
+                if (monthFilters.indexOf('9') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '9');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('9');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+            d3.select("#Oct").on("click", function() {
+
+                if (monthFilters.indexOf('10') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '10');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('10');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+            d3.select("#Nov").on("click", function() {
+
+                if (monthFilters.indexOf('11') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '11');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('11');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+            d3.select("#Dec").on("click", function() {
+
+                if (monthFilters.indexOf('12') >= 0) {
+                    hide2 = true;
+                    minusMon(monthFilters, '12');
+                } else {
+                    hide2 = false;
+                    monthFilters.unshift('12');
+                }
+
+                if (hide2) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    d3.select(this).style("opacity", 1);
+                }
+
+                var monthData = dimple.filterData(data, 'Month', monthFilters);
+                myChart.data = dimple.filterData(monthData, "DelayType", filterValues);
+                myChart.draw(700);
+                fix_labels2();
+            });
+
+            fix_labels();
+        });
+    </script>
+</body>
+
+</html>

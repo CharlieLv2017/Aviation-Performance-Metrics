@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>APM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" /> -->
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="//www.amcharts.com/lib/4/core.js"></script>
+  <script src="//www.amcharts.com/lib/4/charts.js"></script>
+  <script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/css/styles.css">
+  <link rel="stylesheet" href="static/css/miscPage.css">
+  
+  <script type="text/javascript">
+    $(function () {
+      $("#navigation").load("navigation.html");
+    });
+  </script>
+  <style>
+  </style>
+</head>
+
+<body>
+  <div id="navigation"></div>
+  <div class="container-fluid">
+    <h2>Miscellaneous Plots</h2>
+    <div class="btn-group">
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Location Based
+      </button>
+      <div id="LocDrop" class="dropdown-menu">
+        <a class="dropdown-item" href="#" value="plotL1">Overall State Wise Departure Delay</a>
+        <a class="dropdown-item" href="#" value='plotL2'>Overall State Wise Arrival Delay</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" value='plotL3'>Overall City Wise Departure Delay</a>
+        <a class="dropdown-item" href="#" value='plotL4'>Overall City Wise Arrival Delay</a>        
+      </div>      
+    </div>
+
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Airport Based
+      </button>
+      <div id="AirportDrop" class="dropdown-menu">
+        <a class="dropdown-item" href="#" value='plotAP1'>Overall Airport Departure Delay</a>
+        <a class="dropdown-item" href="#" value='plotAP2'>Overall Airport Arrival Delay</a>
+      </div>      
+    </div>
+
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Airline Based
+      </button>
+      <div id="AirlineDrop" class="dropdown-menu">
+        <a class="dropdown-item" href="#" value='plotAL1'>Overall Airline Departure Delay</a>
+        <a class="dropdown-item" href="#" value='plotAL2'>Overall Airline Arrival Delay</a>
+      </div>      
+    </div>
+
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Time Based
+      </button>
+      <div id="TimeDrop" class="dropdown-menu">
+        <a class="dropdown-item" href="#" value='plotT1'>Overall Year Wise Departure Delay</a>
+        <a class="dropdown-item" href="#" value='plotT2'>Overall Year Wise Arrival Delay</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" value='plotT3'>Overall Month Wise Departure Delay</a>
+        <a class="dropdown-item" href="#" value='plotT4'>Overall Month Wise Arrival Delay</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" value='plotT5'>Overall Day of Week Wise Departure Delay</a>
+        <a class="dropdown-item" href="#" value='plotT6'>Overall Day of Week Wise Arrival Delay</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" value='plotT7'>Overall Day of Month Wise Departure Delay</a>
+        <a class="dropdown-item" href="#" value='plotT8'>Overall Day of Month Wise Arrival Delay</a>
+      </div>      
+    </div>
+
+    <h3 id=ChartHeader style="text-align:center"></h3>
+    <div id="chartdiv"></div>
+
+
+    <!-- <centre>
+      <h3>Bar Chart Race showing top cumulative usage</h3>
+
+      <img src="/static/AL_BCR.gif">
+      <br>
+    </centre> -->
+  </div>
+  <script src="static/js/miscPage.js"></script>
+  <script>
+    initchart(1, "Overall State Wise Departure Delay");
+    $('#LocDrop').on('click', '.dropdown-item',function(){
+      let plotSelection=$(this).attr('value');
+      let title=$(this).text();
+      //console.log(x);
+      //console.log(plotSelection);
+      if(plotSelection=="plotL1")//"Overall State Wise Departure Delay")
+      {
+        //console.log(plotSelection);;
+        initchart(1, title);
+      }
+      else
+      if(plotSelection=="plotL2")//"Overall State Wise Arrival Delay")
+      {
+        initchart(2, title);
+      }
+      else
+      if(plotSelection=="plotL3")//"Overall Airport Departure Delay")
+      {
+        initchart(3, title);
+      }
+      else
+      if(plotSelection=="plotL4")//"Overall Airport Arrival Delay")
+      {
+        initchart(4, title);
+      }
+    });
+  </script>
+
+  <script>
+    $('#AirportDrop').on('click', '.dropdown-item',function(){
+      let plotSelection=$(this).attr('value');
+      let title=$(this).text();
+      //console.log(x);
+      //console.log(plotSelection);
+      if(plotSelection=="plotAP1")//"Overall State Wise Departure Delay")
+      {
+        //console.log(plotSelection);;
+        initchart(11, title);
+      }
+      else
+      if(plotSelection=="plotAP2")//"Overall State Wise Arrival Delay")
+      {
+        initchart(12, title);
+      }
+      else
+      if(plotSelection=="plot7")//"Overall Airport Departure Delay")
+      {
+        initchart(13, title);
+      }
+      else
+      if(plotSelection=="plot8")//"Overall Airport Arrival Delay")
+      {
+        initchart(14, title);
+      }
+    });
+  </script>
+
+<script>
+  $('#AirlineDrop').on('click', '.dropdown-item',function(){
+    let plotSelection=$(this).attr('value');
+    let title=$(this).text();
+    //console.log(x);
+    //console.log(plotSelection);
+    if(plotSelection=="plotAL1")//"Overall State Wise Departure Delay")
+    {
+      //console.log(plotSelection);;
+      initchart(21, title);
+    }
+    else
+    if(plotSelection=="plotAL2")//"Overall State Wise Arrival Delay")
+    {
+      initchart(22, title);
+    }
+    else
+    if(plotSelection=="plot7")//"Overall Airport Departure Delay")
+    {
+      initchart(23, title);
+    }
+    else
+    if(plotSelection=="plot8")//"Overall Airport Arrival Delay")
+    {
+      initchart(24, title);
+    }
+  });
+</script>
+
+
+<script>
+  $('#TimeDrop').on('click', '.dropdown-item',function(){
+    let plotSelection=$(this).attr('value');
+    let title=$(this).text();
+    //console.log(x);
+    //console.log(plotSelection);
+    if(plotSelection=="plotT1")
+    {
+      //console.log(plotSelection);;
+      initchart(31, title);
+    }
+    else
+    if(plotSelection=="plotT2")
+    {
+      initchart(32, title);
+    }
+    else
+    if(plotSelection=="plotT3")
+    {
+      initchart(33, title);
+    }
+    else
+    if(plotSelection=="plotT4")
+    {
+      initchart(34, title);
+    }
+    else
+    if(plotSelection=="plotT5")
+    {
+      initchart(35, title);
+    }
+    else
+    if(plotSelection=="plotT6")
+    {
+      initchart(36, title);
+    }
+    else
+    if(plotSelection=="plotT7")
+    {
+      initchart(37, title);
+    }
+    else
+    if(plotSelection=="plotT8")
+    {
+      initchart(38, title);
+    }
+  });
+</script>
+
+
+</body>
+
+</html>

@@ -1,124 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>APM Maps</title>
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet1" href="css/styles.css"/>
-    <link rel="stylesheet2" href="static/css/styles.css">
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/JNKKKK/MoreToggles.css@0.2.1/output/moretoggles.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+    <script src="static/js/map.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-            crossorigin="anonymous"></script>
-    <script src="js/geopoint.js"></script>
-    <script src="js/hierarchy.js"></script>
-    <script src="js/force.js"></script>
-    <script src="js/stats.js"></script>
-    <script src="js/usmap.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/tip.js"></script>
-	<style>
-</style>
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#navigation").load("navigation.html");
+        });
+    </script>
+
+    <style>
+        body {
+            padding-top: 35px;
+            background-color: #FFFFFF;
+        }
+
+        #searchclear {
+            position: absolute;
+            right: 5px;
+            top: 0;
+            bottom: 0;
+            height: 14px;
+            margin: auto;
+            font-size: 14px;
+            cursor: pointer;
+            color: #ccc;
+        }
+    </style>
 </head>
 
-<body style="background-color:#ccffff;">
-<div class="navbar">
-  <a href="/">Home</a>
-  <div class="dropdown">
-    <button class="dropbtn">Airports 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="/APmap">Map</a>
-      <a href="/APcomp">Comparision</a>
-      <a href="/APperf">Performance</a>
-      <a href="/APusage">Usage</a>
-    </div>
-  </div>
-  <div class="dropdown">
-    <button class="dropbtn">Airlines
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="/ALcomp">Comparision</a>
-      <a href="/ALperf">Performance</a>
-      <a href="/ALusage">Usage</a>
-    </div>
-  </div>
-  <a href="/pred">Prediction</a>
-  <a href="/admin">Admin</a>
-</div>
+<body>
+    <div id="navigation"></div>
 
-<div class="div-container">
-  <hr>
-	<div class="row">
-    <div id="map" class="col-xl-9">
-      <div class="row minuspadding">
-        <div class="col-lg-6">
-          <button id="clearmap" type="button" class="btn btn-light btn-sm" onclick="clearMap()">
-            Clear Map
-          </button>
-          <label class="form-check-label incresepaddingleft">
-            <input id="checkbox" class="form-check-input" type="checkbox" checked
-                onchange="checkbox()">
-            Show all airports
-          </label>
+    <div class="container-fluid">
+        <br>
+        <!-- search bar -->
+        <div id="searchdropdown">
+            <form id="searchform" class="form-inline my-2">
+                <input id="searchbar" class="form-control mr-sm-2" type="search" autocomplete="off"
+                    placeholder="Airport's IATA Code/ICAO Code/Name/City/State Abbreviation" aria-label="Search"
+                    style="width:calc(81% - 58px);" list="airport_list">
+                <datalist id="airport_list" class="dropdown-datalist"
+                    style="width:calc(81% - 58px);background: white;"></datalist>
+                <button id="searchbutton" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+
+                <p style="margin-bottom:0px;padding-left:7px">Info Window</p>
+                <div class="mt-yesno-garden" style="font-size:12px;margin-left:8px">
+                    <input id="infoOption" type="checkbox" checked />
+                    <label for="infoOption"></label>
+
+                </div>
+            </form>
+
         </div>
-        <div class="col-lg-6">
-          <div class="input-group input-group-sm">
-            <span class="input-group-addon">Search</span>
-              <input id="keyword" type="text" class="form-control" placeholder="IATA, ICAO or City Name"
-                  onkeyup="enterHit(event)">
-              <span class="input-group-btn">
-                <button class="btn btn-info" type="button" onclick="searchAirport()">Go!</button>
-              </span>
-          </div>
+        <div class="row">
+            <div id="map" class="map"></div>
+            <div id="mapLegend">
+                <h6>Legend</h6>
+            </div>
+            <div id="airportDetails" class="row ml-2" style="font-size:14px;max-width: 14%;">
+                <table id="detailTable" class="table">
+                    <caption style="caption-side: top; padding-left:15px">Airport Overall Details
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th id="APName" colspan="2" class="table-value" scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="table-key">Latitude</th>
+                            <td id="APLat" class="table-value"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="table-key">Longitude</th>
+                            <td id="APLng" class="table-value"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="table-key">Number of Destinations</th>
+                            <td id="NumOfDests" class="table-value"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="table-key">Average Distance (mile)</th>
+                            <td id="AvgDist" class="table-value"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="table-key">Average Departure Delay (min)</th>
+                            <td id="AvgDepDelay" class="table-value"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="table-key">Average Arrival Delay (min)</th>
+                            <td id="AvgArrDelay" class="table-value"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="table-key">On-Time Departure Rate</th>
+                            <td id="OnTimeDepRate" class="table-value"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="table-key">On-Time Arrival Rate</th>
+                            <td id="OnTimeArrRate" class="table-value"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="table-key">Cancellation Rate</th>
+                            <td id="CancellationRate" class="table-value"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
-    <div id="force" style="visibility: hidden; height: 0"></div>
-      <div id="nonforce">
-        <svg id="usmap"></svg>
-      </div>
+        <div class="row" style="padding-top: 6px">
+            <button id="airport" type="button" class="btn btn-primary ml-3">Airport Mode</button>
+            <button id="route" type="button" class="btn btn-success ml-1">Flight Route Mode</button>
+            <label style="margin-left:10px;padding-top: 10px"> Paths clear: click button or press CTRL + Q </label>
+            <div id="legend" style="margin-left: auto; position:relative; left:-18%;">Punctuality&nbsp;&nbsp;</div>
+        </div>
     </div>
-    <div id="paneldiv" class="col-xl-3 card panel panelbefore">
-      <div id="carddiv">
-        <div class="card-body reducedpadding">
-          <h4 id="card_title" class="card-title"></h4>
-          <h6 id="card_code" class="card-title"></h6>
+
+    <div id="hrdiv"></div>
+    <div id="accordion" class="panelbefore" role="tablist">
+
+        <div class="card">
+            <div class="card-header collapsedtitle" role="tab" id="headingThree">
+                <h6 class="mb-0">
+                    <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false"
+                        aria-controls="collapseThree">
+                        Yearly Statistical Data
+                    </a>
+                </h6>
+            </div>
+            <div id="collapseThree" class="collapse show reducedpadding" role="tabpanel" aria-labelledby="headingThree"
+                data-parent="#accordion">
+                <div id="hour" class="row"></div>
+            </div>
         </div>
-        <ul id="cardlist" class="list-group list-group-flush reducefontsize">
-        </ul>
-      </div>
-      <div id="piediv" class="pie">
-        <svg id="piechart"></svg>
-      </div>
+
+        <div class="card">
+            <div class="card-header collapsedtitle" role="tab" id="headingOne">
+                <h6 class="mb-0">
+                    <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Monthly Statistical Data
+                    </a>
+                </h6>
+            </div>
+            <div id="collapseOne" class="collapse show reducedpadding" role="tabpanel" aria-labelledby="headingOne"
+                data-parent="#accordion">
+                <div id="month" class="row"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header collapsedtitle" role="tab" id="headingTwo">
+                <h6 class="mb-0">
+                    <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
+                        aria-controls="collapseTwo">
+                        Daily Statistical Data
+                    </a>
+                </h6>
+            </div>
+            <div id="collapseTwo" class="collapse show reducedpadding" role="tabpanel" aria-labelledby="headingTwo"
+                data-parent="#accordion">
+                <div id="day" class="row"></div>
+            </div>
+        </div>
     </div>
+
+
+
     <script>
-      // Initialize and add the map
-      function initMap() {
-        // The location of Uluru
-        var uluru = {lat: 40, lng: -96};
-        // The map, centered at Uluru
-        var map = new google.maps.Map(document.getElementById('map'), {zoom: 5, center: uluru});
-        // The marker, positioned at Uluru
-        var marker = new google.maps.Marker({position: uluru, map: map});
-      }
+        let data = JSON.parse('{{ data }}'.replace(/&#34;/g, '"'));
+        // $('#searchbar').on('click', function (e) {
+        //     e.preventDefault();
+        //     // $(this).tab('show')
+        // })
+        let w = 200, h = 50;
+
+        let key = d3.select("#legend")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        let legend = key.append("defs")
+            .append("svg:linearGradient")
+            .attr("id", "gradient")
+            .attr("x1", "0%")
+            .attr("y1", "100%")
+            .attr("x2", "100%")
+            .attr("y2", "100%")
+            .attr("spreadMethod", "pad");
+
+        legend.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "rgb(150,0,0)")
+            .attr("stop-opacity", 1);
+        legend.append("stop")
+            .attr("offset", "20%")
+            .attr("stop-color", "rgb(171,0,0)")
+            .attr("stop-opacity", 1);
+        legend.append("stop")
+            .attr("offset", "40%")
+            .attr("stop-color", "rgb(192,0,0)")
+            .attr("stop-opacity", 1);
+        legend.append("stop")
+            .attr("offset", "60%")
+            .attr("stop-color", "rgb(213,0,0)")
+            .attr("stop-opacity", 1);
+        legend.append("stop")
+            .attr("offset", "80%")
+            .attr("stop-color", "rgb(234,0,0)")
+            .attr("stop-opacity", 1);
+        legend.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "rgb(225,0,0)")
+            .attr("stop-opacity", 1);
+
+        key.append("rect")
+            .attr("width", w)
+            .attr("height", h - 30)
+            .style("fill", "url(#gradient)")
+            .attr("transform", "translate(0,10)");
+
+        let y = d3.scaleLinear()
+            .range([0, w])
+            .domain([5, 95]);
+
+        let yAxis = d3.axisBottom()
+            .scale(y)
+            .ticks(5)
+            .tickFormat(function (d) { return d + "%"; });;
+
+        key.append("g")
+            .attr("class", "y axis")
+            .attr("transform", "translate(0,30)")
+            .call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+
+
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3iXZAgBR-vOYS-n_OYufPQydmo6gmfmg&callback=initMap"></script>
-  </div>
-  <div id="hrdiv"></div>
+    <script src="static/js/dropDownSearch.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3iXZAgBR-vOYS-n_OYufPQydmo6gmfmg&callback=initMap">
+        </script>
+    </div>
+    <div id="hrdiv"></div>
     <hr>
-  <div id="source" class="row"></div>
-</div>
+    <div id="source" class="row"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

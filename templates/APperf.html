@@ -1,115 +1,254 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-image: url('bg1.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-}
+  <title>APM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
 
-.navbar {
-  overflow: hidden;
-  background-color: #333;
-}
-
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-.dropdown .dropbtn {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-</style>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!-- Resources -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="static/css/styles.css">
+  <script type="text/javascript">
+    $(function () {
+      $("#navigation").load("navigation.html");
+    });
+  </script>
+  <style>
+  </style>
 </head>
+
 <body>
-
-<div class="navbar">
-  <a href="/">Home</a>
-  <div class="dropdown">
-    <button class="dropbtn">Airports 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="/APmap">Map</a>
-      <a href="/APcomp">Comparision</a>
-      <a href="/APperf">Performance</a>
-      <a href="/APusage">Usage</a>
-      
+  <div id="navigation"></div>
+  <div class="container-fluid">
+    <h1><center>Delay between Major Airports</center></h1>
+    <div class="row">
+      <div id="chartdiv" style="position: relative; overflow: hidden;"></div>
+      <div class="row" style="font-size:17px;max-width: 30%;">
+        <br>
+        <ul><span style="font-size: 30px;"><b><u>How to use:</u></b></span>
+            <li><span style="font-size: 22px;">Each Node (arcs on the circumference) represents an airport</span><br></li>
+            <li><span style="font-size: 22px;"><b>Click Nodes: </b></span><br>Clicking on a node toggles its selection on and off.</li>
+            <li><span style="font-size: 22px;"><b>Hover Nodes: </b></span><br>Hover over a node to view the total average delay contributed by that node among selected nodes.</li>                    
+            <li><span style="font-size: 22px;"><b>Hover Link/Path: </b></span><br>Hover over a link/path (directional) to see the average delay between the two airports.</li>
+        </ul>
     </div>
-  </div>
-  <div class="dropdown">
-    <button class="dropbtn">Airlines
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="/ALcomp">Comparision</a>
-      <a href="/ALperf">Performance</a>
-      <a href="/ALusage">Usage</a>
-      
     </div>
-  </div>
-  <a href="/pred">Prediction</a>
-  <a href="/admin">Admin</a>
 </div>
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<style>
+  #chartdiv {
+    margin-left: 100px;
+    margin-right: 200px;
+    width: 820px;
+    height: 820px;
+  }
+  </style>
+<script>
+  am4core.ready(function() {
+  
+  // Themes begin
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+  
+  var chart = am4core.create("chartdiv", am4charts.ChordDiagram);
+  
+  // colors of main characters
+  chart.colors.saturation = 0.65;
+  chart.colors.step = 1;
+  var colors = {
+      A:chart.colors.next(),
+      B:chart.colors.next(),
+      C:chart.colors.next(),
+      D:chart.colors.next(),
+      E:chart.colors.next(),
+      F:chart.colors.next()
+  }
+  
+  chart.dataSource.url = "/static/files/RouteDelay3.csv";
+  chart.dataSource.parser = new am4core.CSVParser();
+  chart.dataSource.parser.options.useColumnNames = true;
+  
+  chart.dataFields.fromName = "Origin";
+  chart.dataFields.toName = "Dest";
+  chart.dataFields.value = "AverageDelay";
 
-<center>
-<h3>Airports with highest delay</h3>
+  
+  //hide on start up
+  chart.events.on('datavalidated', function() {
+    for (let elem in chart.nodes._dictionary)
+    {
+      //console.log(elem);
+      chart.nodes.getKey(elem).hide();
+      // chart.nodes.value(elem).hide();
+    }
+  })
 
-<img src="/static/Airport.png">
-<br>
-</center>
+  // // Configure links
+  // var link = chart.links.template;
+  // link.colorMode = "gradient";
+  // link.fillOpacity = 0.5;
 
+  // // Set up tooltips
+  // chart.tooltip.label.interactionsEnabled = true;
+  // chart.tooltip.keepTargetHover = true;
+  // //series.columns.template.tooltipHTML = '<b>{Origin}</b><br><a href="https://en.wikipedia.org/wiki/{Origin.urlEncode()} Airport">More info</a>';
+  // chart.columns.template.tooltipHTML = `<b>Airport: {Origin}</b><br>Avg. Delay: {DepDelay}<br><input type="button" value="More info" onclick="location.href='https://en.wikipedia.org/wiki/{Origin.urlEncode()} Airport';" />`;
+
+  // Set up tooltips
+  chart.tooltip.label.interactionsEnabled = true;
+  chart.tooltip.keepTargetHover = true;
+
+
+  chart.nodePadding = 0.5;
+  chart.minNodeSize = 0.01;
+  chart.startAngle = 80;
+  chart.endAngle = chart.startAngle + 360;
+  chart.sortBy = "value";
+  chart.fontSize = 15;
+  
+  var nodeTemplate = chart.nodes.template;
+  nodeTemplate.readerTitle = "Click to show/hide or drag to rearrange";
+  nodeTemplate.showSystemTooltip = true;
+  nodeTemplate.propertyFields.fill = "color";
+  nodeTemplate.tooltipHTML = `{name}'s Selected Total Average Delay: {total} minutes <br><input type="button" value="More info" onclick="location.href='https://en.wikipedia.org/wiki/{name.urlEncode()} Airport';" />`;
+  
+  // when rolled over the node, make all the links rolled-over
+  nodeTemplate.events.on("over", function(event) {    
+      var node = event.target;
+      node.outgoingDataItems.each(function(dataItem) {
+          if(dataItem.toNode){
+              dataItem.link.isHover = true;
+              dataItem.toNode.label.isHover = true;
+          }
+      })
+      node.incomingDataItems.each(function(dataItem) {
+          if(dataItem.fromNode){
+              dataItem.link.isHover = true;
+              dataItem.fromNode.label.isHover = true;
+          }
+      }) 
+  
+      node.label.isHover = false;   
+  })
+  
+  // when rolled out from the node, make all the links rolled-out
+  nodeTemplate.events.on("out", function(event) {
+      var node = event.target;
+      node.outgoingDataItems.each(function(dataItem) {        
+          if(dataItem.toNode){
+              dataItem.link.isHover = true;                
+              dataItem.toNode.label.isHover = true;
+          }
+      })
+      node.incomingDataItems.each(function(dataItem) {
+          if(dataItem.fromNode){
+              dataItem.link.isHover = true;
+             dataItem.fromNode.label.isHover = true;
+          }
+      })
+  
+      node.label.isHover = true;
+  })
+  
+  var label = nodeTemplate.label;
+  label.relativeRotation = 90;
+  
+  label.fillOpacity = 0.8;
+  let labelHS = label.states.create("hover");
+  labelHS.properties.fillOpacity = 1;
+  
+  nodeTemplate.cursorOverStyle = am4core.MouseCursorStyle.pointer;
+  // this adapter makes non-main character nodes to be filled with color of the main character which he/she kissed most
+  nodeTemplate.adapter.add("fill", function(fill, target) 
+  {
+    let node = target;
+    let counters = {};
+    let mainChar = false;
+    node.incomingDataItems.each(function(dataItem) {
+        if(colors[dataItem.toName]){
+            mainChar = true;
+        }
+
+        if(isNaN(counters[dataItem.fromName])){
+            counters[dataItem.fromName] = dataItem.value;
+        }
+        else{		
+            counters[dataItem.fromName] += dataItem.value;
+        }
+    })
+    if(mainChar){
+        return fill;
+    }
+
+    let count = 0;
+    let color;
+    let biggest = 0;
+    let biggestName;
+
+    for(var name in counters){
+        if(counters[name] > biggest){
+            biggestName = name;
+            biggest = counters[name]; 
+        }        
+    }
+    if(colors[biggestName]){
+        fill = colors[biggestName];
+    }
+  
+    return fill;
+  })
+  
+  // link template
+  var linkTemplate = chart.links.template;
+  linkTemplate.strokeOpacity = 0;
+  linkTemplate.fillOpacity = 0.15;
+  linkTemplate.tooltipHTML = "Average Delay from {fromName} to {toName}: {value.value} minutes";
+  
+  var hoverState = linkTemplate.states.create("hover");
+  hoverState.properties.fillOpacity = 0.7;
+  hoverState.properties.strokeOpacity = 0.7;
+  
+  // data credit label
+  var creditLabel = chart.chartContainer.createChild(am4core.TextLink);
+  creditLabel.y = am4core.percent(99);
+  creditLabel.x = am4core.percent(99);
+  creditLabel.horizontalCenter = "right";
+  creditLabel.verticalCenter = "bottom";
+  
+  //hide on start up
+  chart.events.on('datavalidated', function() 
+  {
+    for (let elem in chart.nodes._dictionary)
+    {
+      //console.log(elem);
+      chart.nodes.getKey(elem).hide();
+      // chart.nodes.value(elem).hide();
+    }
+  })
+
+
+
+  /*
+  var titleImage = chart.chartContainer.createChild(am4core.Image);
+  titleImage.href = "//www.amcharts.com/wp-content/uploads/2018/11/whokissed.png";
+  titleImage.x = 30
+  titleImage.y = 30;
+  titleImage.width = 200;
+  titleImage.height = 200;
+  */
+  }); // end am4core.ready()
+  </script>
 </body>
+
 </html>

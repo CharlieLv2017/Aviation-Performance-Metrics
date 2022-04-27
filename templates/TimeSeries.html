@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>APM</title>
+  <meta charset="utf-8">
+  <!--Mobile Adaptation-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" /> -->
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="//www.amcharts.com/lib/4/core.js"></script>
+  <script src="//www.amcharts.com/lib/4/charts.js"></script>
+  <script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
+  
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/css/styles.css">
+  <link rel="stylesheet" href="static/css/indexPage.css">
+  <link rel="stylesheet" href="static/css/dash.css">
+  <script type="text/javascript">
+    $(function () {
+      $("#navigation").load("navigation.html");
+    });
+  </script>
+</head>
+
+<body>
+  <!-- <a id="navigation" href="navigation.html">Menu</a> -->
+  <div id="navigation"></div>
+  <!--#include virtual="navigation.html" -->
+  <!-- <nav id="navigation" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav> -->
+  
+  <div class="container-fluid">
+    <div> 
+      <!-- style="border: thick double #32a1ce"> -->
+      <div class="text-center" style="padding-top: 20px;">
+        <h2>Percentage Departure Delay, Arrival Delay and Cancellations per day</h2>
+        <br>
+      </div>
+      <div id="chartdiv"></div>
+    </div>
+    <br>
+
+
+    
+
+
+  </div>
+
+
+
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+  <script type="text/javascript">
+    // $(document).ready(function () {
+    //   $("#navigation").load("navigation.html");
+    // });
+    // $.get("navigation.html", function(data){
+    //   $("#navigation").replaceWith(data);
+    // });
+  </script>
+
+  <script src="static/js/indexPage.js"></script>
+  <script src="static/js/dash.js"></script>
+  <script>
+    // var slideIndex = 0;
+    // showSlides();
+
+    // function showSlides() {
+    //   var i;
+    //   var slides = document.getElementsByClassName("mySlides");
+    //   var dots = document.getElementsByClassName("dot");
+    //   for (i = 0; i < slides.length; i++) {
+    //     slides[i].style.display = "none";
+    //   }
+    //   slideIndex++;
+    //   if (slideIndex > slides.length) { slideIndex = 1 }
+    //   for (i = 0; i < dots.length; i++) {
+    //     dots[i].className = dots[i].className.replace(" active", "");
+    //   }
+    //   slides[slideIndex - 1].style.display = "block";
+    //   dots[slideIndex - 1].className += " active";
+    //   setTimeout(showSlides, 5000); // Change image every 2 seconds
+    // }
+  </script>
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  crossorigin="anonymous"></script>
+</body>
+
+</html>
