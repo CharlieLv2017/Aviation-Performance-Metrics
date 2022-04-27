@@ -1,0 +1,351 @@
+CityName,ArrDelay
+Ogdensburg,86.6495
+Staunton,84.6802
+Salina,71.6314
+Clarksburg/Fairmont,69.0016
+Brainerd,66.4851
+Pierre,66.3587
+Cape Girardeau,65.8922
+Alpena,64.9139
+Cheyenne,64
+Hattiesburg/Laurel,63.9582
+Scottsbluff,63.1503
+Youngstown/Warren,59.5
+St. Augustine,57.4545
+Laramie,56.801
+Marquette,56.3206
+Kearney,55.5315
+Devils Lake,55.4726
+Pueblo,54.5486
+Nantucket,54.2397
+North Platte,54.2365
+Liberal,54.0424
+Hilton Head,53.6522
+Plattsburgh,53.4603
+Meridian,53.4003
+Newark,52.9438
+Hays,52.8648
+Jamestown,52.7452
+Lewisburg,52.7049
+Watertown,52.4783
+Trenton,52.1301
+St. Petersburg,51.8615
+Rhinelander,51.3134
+Quincy,51.2988
+Mammoth Lakes,51.1273
+Pellston,50.9839
+Eagle,50.9778
+Hancock/Houghton,50.619
+Arcata/Eureka,50.2912
+Aspen,50.1785
+New York,49.8782
+Greenville,49.3041
+Paducah,49.236
+Sanford,49.1152
+Sault Ste. Marie,49.0808
+Aberdeen,48.7821
+Punta Gorda,48.7387
+North Bend/Coos Bay,48.5149
+South Bend,48.2478
+Escanaba,47.8958
+Bemidji,47.7826
+Saginaw/Bay City/Midland,47.0798
+Duluth,46.7623
+San Francisco,46.6726
+Hagerstown,46.3805
+Ithaca/Cortland,46.2341
+Latrobe,46.1765
+Iron Mountain/Kingsfd,45.9865
+Fort Wayne,45.7432
+Binghamton,45.5099
+Newburgh/Poughkeepsie,45.2498
+Redding,45.098
+Branson,44.936
+White Plains,44.9323
+Worcester,44.4155
+Charlottesville,44.3954
+Eau Claire,44.2446
+Prescott,44.1584
+Santa Rosa,43.9684
+State College,43.8889
+Boston,43.85
+Atlantic City,43.8342
+Akron,43.7738
+CONCORD,43.6526
+Crescent City,43.2623
+Burlington,43.0323
+Bangor,42.8473
+Muskegon,42.7745
+Chicago,42.6703
+Dallas/Fort Worth,42.5384
+Kalamazoo,42.3562
+Jackson,42.2475
+New Haven,42.1544
+Monroe,41.9972
+Knoxville,41.9755
+International Falls,41.9372
+Monterey,41.7742
+Chattanooga,41.4727
+Lansing,41.4543
+Rock Springs,41.4129
+Detroit,41.3799
+Colorado Springs,41.3797
+Ponce,41.233
+Pago Pago,41.0595
+Richmond,40.8571
+Cincinnati,40.7422
+Baton Rouge,40.7097
+Montgomery,40.6108
+Bloomington/Normal,40.5622
+Green Bay,40.5266
+Bristol/Johnson City/Kingsport,40.4873
+Aguadilla,40.3268
+Syracuse,40.3174
+Cleveland,40.3157
+Traverse City,40.2685
+San Luis Obispo,40.1967
+Charleston/Dunbar,40.1672
+Dothan,40.0821
+Asheville,39.9696
+Moab,39.9415
+Peoria,39.9396
+Mosinee,39.881
+Hibbing,39.8731
+Philadelphia,39.783
+Lexington,39.7664
+Vernal,39.7491
+Dayton,39.5754
+Grand Forks,39.5552
+Florence,39.5143
+Rochester,39.4883
+West Palm Beach/Palm Beach,39.4731
+Medford,39.4504
+Ashland,39.3448
+Bend/Redmond,39.2903
+Columbia,39.2776
+Evansville,39.2656
+Erie,39.0347
+Belleville,39.0287
+Appleton,38.8295
+Greensboro/High Point,38.7138
+Minneapolis,38.6238
+Mission/McAllen/Edinburg,38.6234
+Buffalo,38.5063
+Shreveport,38.4944
+Fort Smith,38.4219
+Washington,38.4068
+Atlanta,38.4019
+Gunnison,38.3729
+Fort Lauderdale,38.3727
+Joplin,38.2525
+Mobile,38.2343
+Santa Barbara,38.1519
+Miami,38.1424
+Niagara Falls,38.0535
+Orlando,37.9993
+Allentown/Bethlehem/Easton,37.9838
+Brunswick,37.9576
+Sioux Falls,37.9456
+Bismarck/Mandan,37.9453
+Minot,37.8925
+Madison,37.8205
+Huntsville,37.7933
+Roswell,37.7664
+Santa Fe,37.7617
+Moline,37.6814
+Santa Maria,37.666
+Lawton/Fort Sill,37.6442
+Augusta,37.5523
+Martha's Vineyard,37.5517
+La Crosse,37.4617
+Norfolk,37.4255
+Savannah,37.3638
+College Station/Bryan,37.3088
+Champaign/Urbana,37.2109
+Gulfport/Biloxi,37.1791
+Panama City,37.1244
+Waterloo,37.1208
+Islip,37.1201
+Myrtle Beach,37.0972
+Scranton/Wilkes-Barre,37.0855
+Portsmouth,37.07
+Cedar Rapids/Iowa City,37.0568
+Lafayette,37.0464
+Grand Island,36.9744
+Greer,36.9687
+Fargo,36.8743
+Manhattan/Ft. Riley,36.8726
+Elmira/Corning,36.8195
+Newport News/Williamsburg,36.7738
+Harrisburg,36.7736
+Gillette,36.7381
+Denver,36.7267
+Grand Rapids,36.6889
+Butte,36.6271
+Hyannis,36.6213
+Houston,36.576
+Bakersfield,36.4766
+Hartford,36.4413
+Toledo,36.4263
+Des Moines,36.3822
+San Juan,36.3363
+Pasco/Kennewick/Richland,36.2055
+Jacksonville/Camp Lejeune,36.1968
+New Bern/Morehead/Beaufort,36.167
+Laredo,36.164
+Raleigh/Durham,36.1139
+Lake Charles,36.0766
+Fayetteville,36.0297
+Fort Myers,36.0231
+Roanoke,35.9977
+Fresno,35.9566
+Indianapolis,35.7882
+Rapid City,35.7579
+Charleston,35.6656
+Springfield,35.6615
+Valparaiso,35.5711
+Provo,35.482
+Eugene,35.397
+Providence,35.3838
+Pittsburgh,35.3729
+Jackson/Vicksburg,35.2795
+Wilmington,35.2254
+Billings,35.2056
+Hobbs,35.1976
+Alexandria,35.167
+Charlotte Amalie,35.1229
+Brownsville,35.0833
+Lincoln,35.0553
+Milwaukee,35.0325
+Tampa,35.0184
+Columbus,34.8889
+Lynchburg,34.8297
+Albany,34.8084
+Hayden,34.7558
+Flint,34.7504
+Birmingham,34.6494
+Jacksonville,34.5095
+Beaumont/Port Arthur,34.4927
+Durango,34.4781
+Louisville,34.4759
+St. Cloud,34.4203
+Wichita,34.3768
+Valdosta,34.3704
+Memphis,34.1018
+Tallahassee,33.9252
+Stockton,33.828
+Los Angeles,33.7528
+Manchester,33.7247
+Oklahoma City,33.7186
+Key West,33.6856
+Midland/Odessa,33.5289
+Killeen,33.4455
+Long Beach,33.4288
+Gainesville,33.4242
+Corpus Christi,33.353
+Wichita Falls,33.0922
+Omaha,33.0651
+Rockford,33.0597
+Bozeman,32.994
+Charlotte,32.9687
+New Orleans,32.9541
+Austin,32.9434
+Sarasota/Bradenton,32.878
+Tulsa,32.8764
+Lubbock,32.8328
+Cody,32.721
+Dubuque,32.6419
+Nashville,32.4936
+Salt Lake City,32.4906
+Palm Springs,32.306
+Pensacola,32.0585
+Tucson,32.0418
+Sun Valley/Hailey/Ketchum,32.0063
+Waco,31.9373
+Montrose/Delta,31.9171
+Amarillo,31.89
+San Antonio,31.7936
+Garden City,31.6454
+Christiansted,31.6374
+Owensboro,31.5977
+Williston,31.5975
+El Paso,31.5805
+Baltimore,31.5174
+Boise,31.5078
+Las Vegas,31.4994
+Little Rock,31.4431
+Kansas City,31.3014
+Texarkana,31.2588
+Tyler,31.1064
+Missoula,30.9931
+Sioux City,30.858
+Daytona Beach,30.7252
+Everett,30.7247
+St. Louis,30.6253
+Longview,30.5397
+Great Falls,30.3638
+Helena,30.344
+Portland,30.3425
+Phoenix,30.1402
+Albuquerque,29.9421
+Reno,29.8917
+Idaho Falls,29.8361
+Abilene,29.8304
+Kalispell,29.4839
+Ontario,29.3931
+Melbourne,29.3665
+Harlingen/San Benito,29.3526
+Flagstaff,29.2217
+Petersburg,29.0866
+San Angelo,29.0791
+Carlsbad,29.0049
+Stillwater,28.9406
+Seattle,28.8527
+Guam,28.838
+San Diego,28.4463
+Sacramento,28.3345
+Dallas,28.3098
+Wrangell,28.1044
+Spokane,28.0562
+Casper,28.055
+Gustavus,27.5636
+Grand Junction,27.5254
+Bullhead City,27.4311
+Dickinson,27.374
+Bellingham,27.3339
+San Jose,27.1828
+Oakland,27.1533
+Burbank,27.123
+Yuma,27.091
+Sitka,26.681
+Elko,26.0035
+Ogden,25.9381
+Saipan,25.3608
+Lewiston,25.3015
+Juneau,25.239
+Anchorage,24.9775
+Santa Ana,24.4076
+Ketchikan,24.3417
+Barrow,24.1496
+St. George,24.0159
+Yakutat,23.9116
+Twin Falls,23.8985
+Honolulu,23.4813
+Fairbanks,23.3019
+Pocatello,23.2509
+Adak Island,23.1496
+Dillingham,22.7857
+Cordova,22.5497
+Kahului,22.3596
+Del Rio,21.8304
+Deadhorse,21.5553
+Bethel,21.4866
+Kodiak,21.2215
+Kotzebue,19.6398
+Nome,19.6372
+Lihue,19.0496
+Kona,18.9943
+Cedar City,17.2957
+King Salmon,13.375
+Hilo,11.9565
+West Yellowstone,11.6733
